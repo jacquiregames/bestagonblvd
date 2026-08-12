@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Suburbia - How to Play</title>
+
+<style>
+:root{
+    --bg:#eef3f8;
+    --card:#ffffff;
+    --accent:#2f80ed;
+    --accent2:#27ae60;
+    --text:#263238;
+    --muted:#607d8b;
+    --border:#d7e3ef;
+    --shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:40px;
+    font-family:Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    background:
+        radial-gradient(circle at top,#ffffff,#eef3f8 65%);
+    color:var(--text);
+}
+
+.container{
+    max-width:950px;
+    margin:auto;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.header h1{
+    margin:0;
+    font-size:3rem;
+    color:var(--accent);
+    letter-spacing:1px;
+}
+
+.header p{
+    font-size:1.3rem;
+    color:var(--muted);
+    margin-top:10px;
+}
+
+.section{
+    background:var(--card);
+    border-radius:18px;
+    padding:28px;
+    margin-bottom:25px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+}
+
+.section h2{
+    margin-top:0;
+    color:var(--accent);
+    border-bottom:2px solid var(--border);
+    padding-bottom:10px;
+}
+
+.options{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+
+.option{
+    background:#f8fbff;
+    border-left:6px solid var(--accent);
+    border-radius:12px;
+    padding:18px;
+}
+
+.option h3{
+    margin-top:0;
+    color:var(--accent);
+}
+
+.highlight{
+    color:var(--accent2);
+    font-weight:bold;
+}
+
+.population{
+    background:#fff8f5;
+    border-left:6px solid #e74c3c;
+}
+.summary-row{  
+    padding:22px 28px;
+}
+
+.summary-item{
+    flex:1; 
+    padding:14px 18px; 
+    background:#f8fbff;
+    border-radius:10px;
+    line-height:1.55;
+    font-size:1rem;
+}
+
+.summary-item strong:first-child{
+    color:var(--accent);
+    font-size:1.05rem;
+}
+
+@media (max-width: 800px){
+    .summary-row{
+        flex-direction:column;
+    }
+}
+.turn-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:0;
+    padding-bottom:12px;
+    border-bottom:2px solid var(--border);
+    color:var(--accent);
+}
+
+.turn-header span{
+    font-size:1rem;
+    font-weight:400;
+    color:var(--text);
+}
+
+.turn-header span strong{
+    color:var(--accent2);
+}
+.footer{
+    text-align:center;
+    margin-top:30px;
+    font-size:1.2rem;
+    font-weight:bold;
+    color:#2c3e50;
+}
+
+strong{
+    color:#1b5e20;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🏙️ How to Play Suburbia</h1>
+        <p>
+            Grow your city's <strong>Population</strong> by balancing
+            <strong>Income</strong> and <strong>Reputation</strong>.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2 class="turn-header">
+            🎲 Your Turn:
+            <span>Choose <strong>ONE</strong> of the following actions</span>
+        </h2>
+        <div class="options">
+
+            <div class="option">
+                <h3>🏗️ Place a Tile</h3>
+                <p>
+                    Buy a tile from the market, place it adjacent to your city,
+                    then <span class="highlight">immediately resolve all of its effects.</span>
+                </p>
+            </div>
+
+            <div class="option">
+                <h3>🌊 Create a Lake</h3>
+                <p>
+                    Purchase and place a
+                    <strong>Lake</strong> tile anywhere it is legally allowed.
+                </p>
+            </div>
+
+            <div class="option">
+                <h3>🔄 2× Reactivate a Tile</h3>
+                <p>
+                    Repurchase a tile already in your city and
+                    receive all of its effects again.
+                </p>
+            </div>
+
+        </div>
+ 
+
+        <div class="summary-item">
+            <strong>Resolve Effects:</strong>
+            Immediately apply every effect shown on the tile you placed or reactivated.
+        </div>
+
+        <div class="summary-item">
+            <strong>Population Track:</strong>
+            Crossing a red line reduces both your <strong>Income</strong> and <strong>Reputation</strong> by <strong>1</strong>.
+        </div>
+
+        <div class="summary-item">
+            <strong>End of Game:</strong>
+            Add bonus points from the <strong>End of Game Goals</strong> to your final <strong>Population</strong>. Highest Population wins!
+        </div>
+    </div>
+</div>
+</body>
+</html>
