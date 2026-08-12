@@ -1,0 +1,74 @@
+/* src/styles/LoadingScreen.css */
+.loading-screen-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #002b36;
+  background-image: url('/assets/gameback/gameback4.png');
+  background-size: cover;
+  background-position: center;
+  z-index: 9999;
+  font-family: 'Orbitron', sans-serif;
+  animation: kenburns-single 20s linear infinite alternate;
+}
+
+.loading-text {
+  color: #58a6ff;
+  margin-top: 30px;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  font-weight: bold;
+  animation: pulse 1.5s infinite;
+  text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0.4; transform: scale(0.98); }
+}
+
+/* Animates background-size/position rather than transform: scale, so the
+   pan/zoom applies only to the background image and not to the text/loader
+   children of .loading-screen-container. */
+@keyframes kenburns-single {
+  0% {
+    background-size: 100% auto;
+    background-position: center;
+  }
+  100% {
+    background-size: 115% auto;
+    background-position: center 40%;
+  }
+}
+
+.loader {
+  display: inline-flex;
+  gap: 15px;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  height: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  /* FIX: removed stray 'png' word that was before 'radial-gradient' */
+  background:
+    radial-gradient(farthest-side,#000 95%,#0000) 50%/10px 10px no-repeat
+    #58a6ff;
+  animation: l10 1.5s infinite alternate;
+}
+.loader:after {
+  --s:-1;
+}
+@keyframes l10 {
+  0% ,20% {transform:scaleX(var(--s,1)) rotate(0deg) ;clip-path:inset(0)}
+  60%,100%{transform:scaleX(var(--s,1)) rotate(30deg);clip-path:inset(40% 0 0)}
+}
+

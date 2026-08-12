@@ -1,0 +1,241 @@
+/* src/styles/GameSummaryPage.css */
+.summary-overlay {
+    position: fixed;
+    top: 1vh; /* Position from the top of the viewport */
+    left: 180px; /* Position from the left edge */
+    width: 300px; /* Match the width of the summary container */
+    height: 95.5vh; /* Match the height of the summary container */
+    z-index: var(--z-summary-overlay);
+}
+
+.summary-container-v2 {
+    width: 100%; /* Let the container fill its parent overlay */
+    height: 100%; /* Let the container fill its parent overlay */
+    background: #002b36; 
+    border-radius: 10px;
+    padding: 12px;
+    overflow-y: auto;
+	scrollbar-width: thin;  
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
+}
+ 
+
+.summary-section-header {
+    font-family: 'Orbitron', sans-serif;
+    color: #39FF14;
+    text-align: center;
+    border-bottom: 2px solid #39FF14;
+    padding-bottom: 3px;
+    margin-top: 4px;
+    font-size: 1.8rem;
+}
+
+.summary-entry {
+    margin: 16px 1px;
+    padding: 10px;
+    background: rgba(255, 205, 205, 0.3);
+    border-radius: 10px; 
+    border: 2px solid #39FF14;
+}
+
+.goal-title { 
+
+	display: flex;
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: white; 
+	text-align: center; 
+	justify-content: center;
+	margin-bottom: 2px;
+}
+
+.goal-objective {
+	display: flex;		
+	font-size: 1.1rem;
+	font-style: italic;
+	color: white; 
+	margin-bottom: 2px;
+	text-align: center; 
+	justify-content: center;
+}
+
+.public-goal-winner-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-top: 8px;
+}
+
+.conversion-row {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 5px;
+    font-size: 1.2rem;
+    margin-top: 8px;
+}
+
+.winner-row.no-winner {
+    justify-content: center;
+    color: red;
+    font-weight: bold;
+	display: flex;  
+    align-items: center; 		
+    font-family: 'Orbitron', sans-serif;
+}
+
+.winner-info {	 
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* NEW: This rule styles the new right-aligned group */
+.conversion-details {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Adjust spacing between money, arrow, and pop bonus */
+}
+
+.winner-gem {
+    width: 30px;
+    height: 30px; 
+}
+
+.winner-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+.player-context {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: white;
+	align-content: center; 
+}
+
+.pop-bonus { 
+    color: #FF8C00;
+    font-weight: bold;		
+		font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pop-bonus img {
+    width: 24px;
+    height: 24px;
+}
+.cash-val img {
+    height: 24px;
+}
+.arrow img {
+    height: 24px;
+}
+.arrow {
+  display: flex;
+  align-items: center;
+}
+.cash-val {
+	color: springgreen;
+	font-size: 1.3rem; 
+    font-weight: bold;
+	align-content: center;
+	justify-content: center;
+    display: flex;
+}
+
+.goal-result {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    margin-top: 0px;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.player-goal-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3px; /* Add some space above */
+}
+
+.player-context {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Creates space between the gem and the text */
+  font-weight: bold;
+}
+
+.goal-result.success { color: #39FF14; }
+.goal-result.fail { color: #FF4136; }
+
+.winner-container {
+    text-align: center;
+    padding: 20px; /* Restored original padding for better spacing */
+		background-image: url('/winnerback.png'); /* Assuming the path is in assets */
+    
+    /* FIX: Replace background-size and background-position with these properties */
+    background-size: cover;          /* Scales the image to fill the container */
+    background-position: center;     /* Centers the image within the container */
+    background-repeat: no-repeat;    /* Prevents the image from tiling */
+
+    border: 3px solid gold;
+    border-radius: 20px;
+    margin-top: 10px; /* Restored original margin */
+    
+    /* Add this for better text readability over the background image */
+    position: relative; 
+    z-index: 1;
+}
+
+/* Optional: Add a pseudo-element for a dark overlay to make text pop */
+.winner-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0; 
+    border-radius: inherit; /* Match the parent's border-radius */
+    z-index: -1;
+}
+
+.winner-label { 
+    color: #39FF14;
+    font-size: 2rem;
+		font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.final-winner-name {
+    font-size: 3rem;
+    font-weight: 900;
+    color: gold;
+		 
+    margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.final-pop {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: rgba(255,255,255,1);
+    margin-bottom: 0px;
+		padding: 0px;
+}
+
+/* Animations */
+.slide-in { animation: slideIn 0.5s ease-out forwards; }
+.fade-in { animation: fadeIn 0.5s ease-out forwards; }
+.bounce-in { animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+.scale-up { animation: scaleUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+@keyframes slideIn { from { transform: translateX(-50px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bounceIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes scaleUp { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }

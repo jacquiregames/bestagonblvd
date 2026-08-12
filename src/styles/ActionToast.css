@@ -1,0 +1,177 @@
+/* src/styles/ActionToast.css */
+.action-toast-wrapper {
+  position: fixed;
+  bottom: 25px;
+  right: 0;
+  transform: translateX(-18%);
+  z-index: var(--z-notification);
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+}
+
+.action-toast {
+  background: rgba(10, 10, 10, 0.95);
+  border: 2px solid #268bd2;
+  border-radius: 15px;
+  padding: 15px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 0 30px rgba(38, 139, 210, 0.7);
+  animation: toast-lifecycle 5s forwards;
+  color: white;
+  font-family: inherit;
+}
+
+@keyframes toast-lifecycle {
+  0% { opacity: 0; transform: translateY(50px) scale(0.9); }
+  5% { opacity: 1; transform: translateY(0) scale(1); }
+  95% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(50px) scale(0.9); }
+}
+
+.toast-top-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.toast-top-row.has-stats {
+  border-bottom: 2px solid rgba(38, 139, 210, 0.4);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.toast-player-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.toast-gem {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.toast-player-name {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
+  color: cyan;
+  font-size: 1rem;
+  margin-top: 4px;
+}
+
+.toast-tile-wrapper {
+  position: relative;
+  width: 75px;
+  height: 65px;
+}
+
+.toast-tile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.toast-invest-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6rem;
+  text-shadow: 0 0 5px black;
+}
+
+.toast-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.toast-action {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+}
+
+.toast-cost {
+  font-size: 1.1rem;
+  color: lime;
+  font-weight: bold;
+  margin-top: 4px;
+  text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
+}
+
+/* Detailed Stats Section */
+.toast-stats-container {
+  max-height: 50vh;
+  overflow-y: hidden;
+}
+
+.toast-section {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(38, 139, 210, 0.3);
+}
+
+.toast-section:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.toast-section-header {
+  font-family: 'Orbitron', sans-serif;
+  color: cyan;
+  font-size: 0.9rem; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 6px 0;
+  text-align: center;
+}
+
+.toast-stat-row {
+  display: grid;
+  grid-template-columns: 60px 140px 1fr;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  padding: 3px 0;
+}
+
+.toast-change-value {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  gap: 5px;
+}
+
+.toast-tag-icon { 
+  width: 18px; 
+  height: 18px; 
+}
+
+.toast-source-name { 
+  font-weight: 600; 
+  color: white; 
+}
+
+.toast-reason-text {
+  color: #ccc;
+  font-style: italic; 
+  font-size: 0.9rem;
+}
+
+/* Stat Colors */
+.income { color: #00FFFF; }
+.reputation { color: #FFD700; }
+.population { color: #FF8C00; }
+.money { color: #39FF14; }
+.loss { color: red; } 

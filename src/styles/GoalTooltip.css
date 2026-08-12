@@ -1,0 +1,207 @@
+/* src/styles/GoalTooltip.css */
+
+.goal-tooltip-container {
+  position: fixed;
+  /* Adjust this based on where you want it to appear relative to the goals */
+  bottom: 20px;
+  right: 530px; /* Positioned to the left of the sidebar + pop track */
+  z-index: var(--z-tooltip);
+  pointer-events: none;
+  animation: tooltipPop 0.3s ease-out;
+}
+
+@keyframes tooltipPop {
+  from { opacity: 0; transform: translateY(10px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.goal-tooltip-content {
+  width: 300px;
+  /* Matches your .overlay-prompt gradient */
+  background: linear-gradient(0deg, hsla(280, 84%, 41%, 1) 0%, hsla(218, 97%, 56%, 1) 100%);
+  color: white;
+  border: 3px solid cyan;
+  border-radius: 15px;
+  /* Matches your .overlay-prompt shadow */
+  box-shadow: 0 0 30px blue;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.goal-tooltip-header {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%); 
+  border-bottom: 2px solid #B8860B; /* Darker gold/brown for contrast */
+}
+
+.goal-name-text {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: #000; /* Black font */
+  text-transform: uppercase;
+  text-shadow: none;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.goal-description-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
+}
+
+/* NEW: Style for the population bonus badge */
+.goal-bonus-amount {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: transparent;
+  padding: 2px 2px;
+  border-radius: 4px;
+  flex-shrink: 0; 
+}
+.goal-bonus-amount img {
+  width: 35px;
+  height: 35px;
+  filter: drop-shadow(.5px .5px 0 white) 
+        drop-shadow(-.5px -.5px 0 white)
+        drop-shadow(.5px -.5px 0 white)
+        drop-shadow(-.5px .5px 0 white);
+}
+.goal-bonus-amount span {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  color: white; 
+  text-shadow: 0 0 5px rgba(255, 140, 0, 0.5);
+}
+
+.goal-tooltip-body {
+  padding: 15px;
+}
+
+.goal-tooltip-description {
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(0, 255, 255, 0.3);
+  line-height: 1.4;
+  color: #ffffff;
+  margin: 0; /* Remove margin to allow flex centering */
+  flex: 1;   /* Allow text to take up remaining space */
+}
+
+.goal-comparison-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.goal-comparison-list li {
+  display: grid; 
+  grid-template-columns: 30px 1fr auto 25px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 4px; 
+  background: #000 !important;  
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 4px;
+}
+ 
+.player-name, .player-value {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-transform: none; 
+  letter-spacing: normal;
+}
+
+.player-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.player-value {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: cyan;
+  text-shadow: none; /* Removed neon glow to match tile tooltips */
+}
+
+/* Update the leading row to make the font even more prominent */
+.player-status-leading .player-name {
+  color: gold;
+  text-shadow: 0 0 5px gold;
+}
+
+.player-status-leading .player-value {
+  color: gold;
+  text-shadow: 0 0 10px gold;
+}
+
+.player-status-icon {
+  text-align: right;
+  font-size: 1.1rem;
+}
+.goal-row-gem {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Status colors and glows */
+.player-status-leading {
+  background: rgba(255, 215, 0, 0.2) !important;
+  border-color: gold !important;
+  box-shadow: inset 0 0 10px gold;
+}
+
+.player-status-tied {
+  background: rgba(0, 255, 255, 0.1) !important;
+  border-color: cyan !important;
+}
+
+.player-status-behind {   
+}
+
+/* Inline Icon Styles */
+.inline-icon-replacement {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: bottom;
+  margin: 0 2px;
+}
+
+.text-inline-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: drop-shadow(.5px .5px 0 white) 
+          drop-shadow(-.5px -.5px 0 white)
+          drop-shadow(.5px -.5px 0 white)
+          drop-shadow(-.5px .5px 0 white);  
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

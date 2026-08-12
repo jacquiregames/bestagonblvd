@@ -1,0 +1,398 @@
+/* src/components/GameBoard.css */
+:root {
+  --hex-width: 160px;
+  --hex-height: calc(var(--hex-width) * 0.866);
+}
+.board-zoom-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  transform: scale(var(--zoom-scale, 1));
+  transform-origin: top center;
+  transition: transform 0.2s ease-out;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.col-board {
+  grid-column: 3 / span 2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  position: relative;
+  height: 900px;
+  width: 1050px;
+  /* border: 1px solid var(--border-color); */
+  padding-top: 0;
+  overflow: hidden;	
+}
+
+.game-board-container {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 0;
+  margin-top: -215px;
+	left: -155px;
+}
+
+.game-board-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start; /* Changed from center to accommodate the button column */
+  justify-content: space-between;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.game-board-header > div {
+  flex: 1;
+  pointer-events: auto;
+}
+
+.header-left { display: flex; justify-content: flex-start; }
+.header-center { display: flex; justify-content: center; }
+.header-right { display: flex; justify-content: flex-end; }
+
+/* New classes for the header action buttons */
+.header-left-actions-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: flex-start;
+  pointer-events: auto;
+}
+
+.header-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.header-action-buttons .active .button {
+  background-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Common Hex Panel styling for HUD indicators */
+.hex-panel {
+  position: relative;
+  padding: 8px 26px; /* Padding clears the angled corners */
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 16px 100%, 0 50%);
+  background-color: var(--hex-border-color, #9e9e9e);
+  z-index: 1;
+  white-space: nowrap;
+}
+
+/* Pseudo-element creates the border effect by masking the inner area */
+.hex-panel::before {
+  content: "";
+  position: absolute;
+  top: 2px; left: 2px; right: 2px; bottom: 2px;
+  background-color: rgba(15, 15, 15, 0.90);
+  clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0 50%);
+  z-index: -1;
+}
+
+/* Specific border colors for action mode */
+.action-mode-place { --hex-border-color: white; }
+.action-mode-lake { --hex-border-color: cyan; }
+.action-mode-invest { --hex-border-color: gold; }
+
+/* Specific style for viewing display */
+.viewing-player-display {
+  --hex-border-color: #9e9e9e; /* A neutral grey */
+}
+
+.viewing-player-display button {
+  background: #ff4136;
+  color: white;
+  border: 1px solid #888;
+  border-radius: 15px;
+  padding: 4px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: inherit;
+}
+
+.viewing-player-display button:hover {
+  background: #777;
+}
+
+/* Turn Indicator */
+.turn-indicator {
+  --hex-border-color: white;
+  transition: filter 0.3s ease;
+}
+
+.turn-indicator-gem {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.turn-indicator.your-turn { 
+  /* Using drop-shadow instead of box-shadow allows glows to conform to the clip-path */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+ 
+/* Zoom Controls */
+.zoom-controls {
+  --hex-border-color: white;
+  padding: 5px 22px; /* Specific padding to fit elements tightly */
+  gap: 4px;
+}
+.zoom-controls button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.2s ease, transform 0.1s;
+}
+.zoom-controls button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+.zoom-controls span {
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0 2px;
+  min-width: 40px;
+  text-align: center;
+}
+
+
+.hex {
+  position: absolute;
+  width: var(--hex-width);
+  height: var(--hex-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+/* Base hex shape using clip-path */
+.hex > .hex-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 2px solid transparent; 
+}
+/* Empty hex */ 
+.empty-hex .hex-inner {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+.empty-hex:hover .hex-inner {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+ 
+ .valid-placement-hex .hex-inner {
+  /* 1. Restore your original transparent blue fill */
+  background-color: rgba(0, 0, 255, 0.2);
+  
+  /* 2. Layer your green outline image on top */
+  background-image: url("/assets/valid4.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat; 
+  border: none;
+}
+
+.valid-placement-hex:hover .hex-inner { 
+  background-color: rgba(0, 0, 230, 0.5); 
+  filter: brightness(1.2);
+}
+ 
+.lake-hex-a .hex-inner { background-image: url("/assets/tiles/lakes/lake_a.png"); }
+.lake-hex-b .hex-inner { background-image: url("/assets/tiles/lakes/lake_b.png"); }
+.lake-hex-c .hex-inner { background-image: url("/assets/tiles/lakes/lake_c.png"); }
+.lake-hex .hex-inner {
+  background-color: #0066ff;
+  border-color: transparent;
+  /* Zooming the width to 112% forces the side borders to be cropped perfectly out of the clip-path bounds */
+  background-size: 112% auto; 
+}
+
+.blue-border-hex .hex-inner {
+  background-color: darkblue; 
+}
+
+.hex-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  pointer-events: none;
+  font-size: 0px; /* Change this to restore (x,y) on hex */
+  font-weight: bold;
+}
+.investment-marker-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 35px;
+  z-index: 11;
+  pointer-events: none; 
+}
+
+.investment-marker-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  color: gold;
+  z-index: 10;
+  pointer-events: none;  
+}
+
+.entering { 
+  transform-style: preserve-3d;
+  animation: 
+    hex-impact 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+    hex-shadow-ripple 0.7s ease-out;
+  z-index: 100; /* Ensure it lands on top of others */
+}
+
+@keyframes hex-impact {
+  0% {
+    /* Starts high up, tilted toward the player, and bright */
+    transform: perspective(1000px) translateZ(500px) translateY(-100px) rotateX(45deg);
+    opacity: 0;
+    filter: brightness(3) blur(5px);
+  }
+  70% {
+    /* Hits the board */
+    transform: perspective(1000px) translateZ(0) translateY(0) rotateX(0);
+    opacity: 1;
+    filter: brightness(1) blur(0);
+  }
+  85% {
+    /* Slight bounce up */
+    transform: perspective(1000px) translateZ(20px);
+  }
+  100% {
+    /* Settle */
+    transform: perspective(1000px) translateZ(0);
+    opacity: 1;
+  }
+}
+
+@keyframes hex-shadow-ripple {
+  0%, 60% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  70% {
+    /* On impact, create a white flash ripple */
+    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 40px 20px rgba(255, 255, 255, 0);
+  }
+}
+
+/* Also apply to One More Round landing */
+.one-more-round-active {
+    animation: 
+        hex-impact 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+        omr-glow 2s ease-in-out infinite alternate;
+}
+
+.highlighted-hex .hex-inner {
+  box-shadow: 0 0 25px 8px gold, inset 0 0 15px 4px gold;
+  animation: pulse-highlight 2s infinite;
+}
+@keyframes pulse-highlight {
+  0% { box-shadow: 0 0 25px 8px gold, inset 0 0 15px 4px gold; }
+  50% { box-shadow: 0 0 35px 12px yellow, inset 0 0 20px 6px yellow; }
+  100% { box-shadow: 0 0 25px 8px gold, inset 0 0 15px 4px gold; }
+}
+
+.fish-gif {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  z-index: 10;
+  animation: fishFade 1.5s ease-in-out;
+}
+
+@keyframes fishFade {
+  0% { opacity: 0; transform: scale(0.8); }
+  10% { opacity: 1; transform: scale(1.05); }
+  90% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+/* Animation for the One More Round tile landing in (4,0) */
+.one-more-round-active {
+  animation: omr-landing 2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+             omr-glow 2s ease-in-out infinite alternate;
+  z-index: 100;
+}
+
+@keyframes omr-landing {
+  0% {
+    transform: scale(5) translateY(-500px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes omr-glow {
+  from { filter: drop-shadow(0 0 5px #ff0000) brightness(1); }
+  to { filter: drop-shadow(0 0 20px #ff0000) brightness(1.3); }
+}
+
+/* Ensure the top row can show images */
+.blue-border-hex.has-omr .hex-inner {
+  background-image: url('/assets/tiles/C/one_more_round.png');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+}

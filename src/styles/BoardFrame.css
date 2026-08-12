@@ -1,0 +1,28 @@
+/* src/components/BoardFrame.css */
+:root {
+  --cell-size: 45px;
+}
+
+.board-frame {
+  position: relative; 
+  display: block;
+  width: 100%;
+	height: 100%;
+  background-color: transparent;
+  flex: 1; 
+  max-height: 1000px;
+  font-size: 1rem;
+}
+
+/* Main 3-panel UI container */
+.center-content { 
+  display: block;
+	width: fit-content;
+	height: 100%; 
+  gap: 1rem;
+  padding: 0.2rem;
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+ 

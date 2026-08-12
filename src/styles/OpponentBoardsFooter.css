@@ -1,0 +1,116 @@
+/* src/styles/OpponentBoardsFooter.css */
+
+/* Positioned the same way .game-board-header overlays the top of the board:
+   an absolutely-positioned strip so it doesn't disturb GameBoard's own
+   width/height math, with pointer-events re-enabled only on the cards
+   themselves so clicks pass through the gaps to the board underneath. */
+.opponent-boards-footer {
+  position: absolute;
+  bottom: 0;
+  left: 300px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.opponent-mini-board-card {
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  background: rgba(7, 54, 66, 0.85); /* matches --header-color */
+  border: 2px solid var(--player-color, var(--border-color));
+  border-radius: 10px;
+  padding: 5px 7px 6px;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.opponent-mini-board-card:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.opponent-mini-board-card.is-viewing {
+  box-shadow: 0 0 0 2px #fff, 0 0 12px 2px var(--player-color, cyan);
+}
+
+.opponent-mini-board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  white-space: nowrap;
+}
+
+.opponent-mini-board-name {
+  color: var(--player-color, #fff);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
+.opponent-mini-board-pop {
+  opacity: 0.9;
+}
+
+.opponent-mini-board-viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.opponent-mini-board-canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+}
+
+/* .mini-hex intentionally does NOT use the main board's --hex-width/
+   --hex-height custom properties: those are shared globally at 160px for
+   the real board elsewhere on the same page, and this needs a fixed tiny
+   size matching MINI_HEX_WIDTH in OpponentBoardsFooter.tsx exactly. */
+.mini-hex {
+  position: absolute;
+  width: 16px;
+  height: 13.856px; /* 16 * 0.866 */
+  pointer-events: none;
+}
+
+.mini-hex .hex-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.mini-hex.lake-hex .hex-inner {
+  background-color: #0066ff;
+}
+.mini-hex.lake-hex-a .hex-inner { background-image: url("/assets/tiles/lakes/lake_a.png"); }
+.mini-hex.lake-hex-b .hex-inner { background-image: url("/assets/tiles/lakes/lake_b.png"); }
+.mini-hex.lake-hex-c .hex-inner { background-image: url("/assets/tiles/lakes/lake_c.png"); }
+
+@media (max-width: 900px) {
+  .opponent-mini-board-card { display: none; } /* footer is a nice-to-have HUD; yield space on small viewports */
+}

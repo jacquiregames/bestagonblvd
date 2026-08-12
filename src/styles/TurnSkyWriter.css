@@ -1,0 +1,63 @@
+/* src/components/TurnSkyWriter.css */
+
+.sky-writer-container {
+  position: fixed;
+  top: 20vw;
+  left: 0;
+  width: 100vw;
+  height: 120px;
+  pointer-events: none;
+  z-index: var(--z-tooltip);
+  overflow: hidden;
+}
+
+.sky-vehicle {
+  position: absolute;
+  height: 80px;
+  width: auto;
+}
+
+/* Direction: Right to Left */
+.rtl {
+  right: -300px; /* Start off-screen right */
+  animation: flyRightToLeft 15s linear forwards;
+}
+
+/* Direction: Left to Right */
+.ltr {
+  left: -300px; /* Start off-screen left */
+  animation: flyLeftToRight 15s linear forwards;
+}
+
+@keyframes flyRightToLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-100vw - 600px)); }
+}
+
+@keyframes flyLeftToRight {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(100vw + 600px)); }
+}
+
+/* Keep unique styling for blimp/jet if desired */
+.plane, .blimp {
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+  animation: flyRightToLeft 15s linear forwards, bobbing 3s ease-in-out infinite alternate;
+}
+
+.jet, .rocket {
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.4));
+}
+
+.jet {
+	height: 140px;
+}
+
+.rocket {
+	height: 100px;
+}
+
+@keyframes bobbing {
+  from { margin-top: 0px; }
+  to { margin-top: 15px; }
+}
