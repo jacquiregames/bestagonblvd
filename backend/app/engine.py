@@ -201,7 +201,7 @@ def apply_action(
             tile_set = "a"
             if tile_id in TILES_B: tile_set = "b"
             elif tile_id in TILES_C: tile_set = "c"
-            log_img, log_label, log_cost = f"assets/tiles/lakes/lake_{tile_set}.png", "Created a Lake", cost
+            log_img, log_label, log_cost = f"assets/tiles/lakes/lake_{tile_set}.webp", "Created a Lake", cost
 
             slide_market_left_and_add_tile(game_state, market_index)
             turn_is_complete = True
@@ -254,7 +254,7 @@ def apply_action(
                 if original_tile_id in TILES_B: tile_set = "b"
                 elif original_tile_id in TILES_C: tile_set = "c"
                 log_label = "Invested in Lake"
-                log_img = f"assets/tiles/lakes/lake_{tile_set}.png"
+                log_img = f"assets/tiles/lakes/lake_{tile_set}.webp"
             else:
                 tile_data = ALL_TILES.get(tile_to_invest.tile_id)
                 if player.money < tile_data.cost:
