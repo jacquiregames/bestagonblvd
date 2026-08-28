@@ -50,7 +50,7 @@ const renderWithIcons = (text: string) => {
     if (map[lower]) {
       return (
         <span key={i} className="inline-icon-replacement" title={part}>
-          <img src={`/assets/tags/${map[lower]}.png`} alt={part} className="text-inline-icon" />
+          <img src={`/assets/tags/${map[lower]}.webp`} alt={part} className="text-inline-icon" />
           <span className="sr-only">{part}</span>
         </span>
       );
@@ -76,7 +76,7 @@ const GoalTooltip: React.FC<GoalTooltipProps> = ({ data }) => {
             <p className="goal-tooltip-description">{renderWithIcons(goal.description)}</p>
             
             <div className="goal-bonus-amount">
-              <img src="/assets/tags/population.png" alt="Population" />
+              <img src="/assets/tags/population.webp" alt="Population" />
               <span>+{goal.populationBonus || 0}</span>
             </div>
           </div>
@@ -85,7 +85,7 @@ const GoalTooltip: React.FC<GoalTooltipProps> = ({ data }) => {
             {comparison.map((player, index) => (
               <li key={index} className={`player-status-${player.status}`}>
                 <img 
-                  src={`/assets/colors/${player.color}.png`} 
+                  src={`/assets/colors/${player.color}.webp`} 
                   className="goal-row-gem" 
                   alt="gem" 
                 />

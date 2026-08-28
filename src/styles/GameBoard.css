@@ -225,7 +225,7 @@
   background-color: rgba(0, 0, 255, 0.2);
   
   /* 2. Layer your green outline image on top */
-  background-image: url("/assets/valid4.png");
+  background-image: url("/assets/tiles/valid.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat; 
   border: none;
@@ -236,9 +236,9 @@
   filter: brightness(1.2);
 }
  
-.lake-hex-a .hex-inner { background-image: url("/assets/tiles/lakes/lake_a.png"); }
-.lake-hex-b .hex-inner { background-image: url("/assets/tiles/lakes/lake_b.png"); }
-.lake-hex-c .hex-inner { background-image: url("/assets/tiles/lakes/lake_c.png"); }
+.lake-hex-a .hex-inner { background-image: url("/assets/tiles/lakes/lake_a.webp"); }
+.lake-hex-b .hex-inner { background-image: url("/assets/tiles/lakes/lake_b.webp"); }
+.lake-hex-c .hex-inner { background-image: url("/assets/tiles/lakes/lake_c.webp"); }
 .lake-hex .hex-inner {
   background-color: #0066ff;
   border-color: transparent;
@@ -391,7 +391,7 @@
 
 /* Ensure the top row can show images */
 .blue-border-hex.has-omr .hex-inner {
-  background-image: url('/assets/tiles/C/one_more_round.png');
+  background-image: url('/assets/tiles/C/one_more_round.webp');
   background-size: cover;
   background-position: center;
   background-color: transparent;

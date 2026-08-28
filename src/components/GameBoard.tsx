@@ -66,18 +66,18 @@ interface ActiveFish {
 }
 
 const fishPositions: FishConfig[] = [
-  { q: 0, r: 2, src: "/assets/fish/fish5.png", delay: 15000, visibleTime: 4500 },
-  { q: 2, r: 1, src: "/assets/fish/fish6.png", delay: 30000, visibleTime: 5000 },
-  { q: 4, r: 0, src: "/assets/fish/fish7.png", delay: 45000, visibleTime: 12200 },
-  { q: 6, r: -1, src: "/assets/fish/fish8.png", delay: 60000, visibleTime: 9000 },
-  { q: 0, r: 2, src: "/assets/fish/fish1.png", delay: 74000, visibleTime: 4000 },
-  { q: 2, r: 1, src: "/assets/fish/fish2.png", delay: 89000, visibleTime: 5300 },
-  { q: 4, r: 0, src: "/assets/fish/fish3.png", delay: 104000, visibleTime: 3300 },
-  { q: 6, r: -1, src: "/assets/fish/fish4.png", delay: 119000, visibleTime: 10000 },
-  { q: 0, r: 2, src: "/assets/fish/fish9.png", delay: 134000, visibleTime: 10000 },
-  { q: 2, r: 1, src: "/assets/fish/fish10.png", delay: 149000, visibleTime: 4000 },
-  { q: 4, r: 0, src: "/assets/fish/fish11.png", delay: 164000, visibleTime: 8000 },
-  { q: 6, r: -1, src: "/assets/fish/fish12.png", delay: 179000, visibleTime: 4300 },
+  { q: 0, r: 2, src: "/assets/fish/fish5.webp", delay: 15000, visibleTime: 4500 },
+  { q: 2, r: 1, src: "/assets/fish/fish6.webp", delay: 30000, visibleTime: 5000 },
+  { q: 4, r: 0, src: "/assets/fish/fish7.webp", delay: 45000, visibleTime: 12200 },
+  { q: 6, r: -1, src: "/assets/fish/fish8.webp", delay: 60000, visibleTime: 9000 },
+  { q: 0, r: 2, src: "/assets/fish/fish1.webp", delay: 74000, visibleTime: 4000 },
+  { q: 2, r: 1, src: "/assets/fish/fish2.webp", delay: 89000, visibleTime: 5300 },
+  { q: 4, r: 0, src: "/assets/fish/fish3.webp", delay: 104000, visibleTime: 3300 },
+  { q: 6, r: -1, src: "/assets/fish/fish4.webp", delay: 119000, visibleTime: 10000 },
+  { q: 0, r: 2, src: "/assets/fish/fish9.webp", delay: 134000, visibleTime: 10000 },
+  { q: 2, r: 1, src: "/assets/fish/fish10.webp", delay: 149000, visibleTime: 4000 },
+  { q: 4, r: 0, src: "/assets/fish/fish11.webp", delay: 164000, visibleTime: 8000 },
+  { q: 6, r: -1, src: "/assets/fish/fish12.webp", delay: 179000, visibleTime: 4300 },
 ];
 
 let fishInstanceCounter = 0;
@@ -325,7 +325,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
                     <>
                       {viewingPlayerColor && (
                         <img
-                          src={`/assets/components/invest_${viewingPlayerColor}.png`}
+                          src={`/assets/components/invest_${viewingPlayerColor}.webp`}
                           className="investment-marker-image"
                           alt="Investment Marker"
                         />

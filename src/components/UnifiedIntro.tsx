@@ -4,24 +4,24 @@ import type { LobbyPlayer } from "../types";
 import HexButton from './HexButton'; 
  
 const colorOptions = [
-  { name: "blue", src: "/assets/colors/blue.png" },
-  { name: "cyan", src: "/assets/colors/cyan.png" },
-  { name: "green", src: "/assets/colors/green.png" },
-  { name: "grey", src: "/assets/colors/grey.png" },
-  { name: "orange", src: "/assets/colors/orange.png" },
-  { name: "black", src: "/assets/colors/black.png" },
-  { name: "purple", src: "/assets/colors/purple.png" },
-  { name: "red", src: "/assets/colors/red.png" },
-  { name: "white", src: "/assets/colors/white.png" }, 
-  { name: "yellow", src: "/assets/colors/yellow.png" },
+  { name: "blue", src: "/assets/colors/blue.webp" },
+  { name: "cyan", src: "/assets/colors/cyan.webp" },
+  { name: "green", src: "/assets/colors/green.webp" },
+  { name: "grey", src: "/assets/colors/grey.webp" },
+  { name: "orange", src: "/assets/colors/orange.webp" },
+  { name: "black", src: "/assets/colors/black.webp" },
+  { name: "purple", src: "/assets/colors/purple.webp" },
+  { name: "red", src: "/assets/colors/red.webp" },
+  { name: "white", src: "/assets/colors/white.webp" }, 
+  { name: "yellow", src: "/assets/colors/yellow.webp" },
 ];
 
 const BG_IMAGES = [
-  '/assets/gameback/gameback4.png',
-  '/assets/gameback/gameback5.png',
-  '/assets/gameback/gameback6.png',
-  '/assets/gameback/gameback7.png',
-  '/assets/gameback/gameback8.png',
+  '/assets/gameback/gameback4.webp',
+  '/assets/gameback/gameback5.webp',
+  '/assets/gameback/gameback6.webp',
+  '/assets/gameback/gameback7.webp',
+  '/assets/gameback/gameback8.webp',
 ];
 
 interface Props {
@@ -95,7 +95,7 @@ const UnifiedIntro: React.FC<Props> = ({
         {/* === NEW: INDEPENDENT LOGO CONTAINER === */}
         <div className="logo-container">
           <img
-            src="/assets/bestagon.png"
+            src="/assets/bestagon.webp"
             alt="Bestagon Blvd"
             className={`main-logo-top ${logoDone ? "done" : ""}`}
             onAnimationEnd={() => setLogoDone(true)}

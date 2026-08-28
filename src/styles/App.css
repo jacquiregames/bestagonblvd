@@ -62,15 +62,15 @@ body {
   background-size: 100% 100%;
   background-position: top;
 }
-.game-bg-1 { background-image: url('/assets/gameback/gameback1.png'); }
-.game-bg-2 { background-image: url('/assets/gameback/gameback2.png'); }
-.game-bg-3 { background-image: url('/assets/gameback/gameback3.png'); }
-.game-bg-4 { background-image: url('/assets/gameback/gameback4.png'); }
-.game-bg-5 { background-image: url('/assets/gameback/gameback5.png'); }
-.game-bg-6 { background-image: url('/assets/gameback/gameback6.png'); }
-.game-bg-7 { background-image: url('/assets/gameback/gameback7.png'); }
-.game-bg-8 { background-image: url('/assets/gameback/gameback8.png'); }
-.game-bg-9 { background-image: url('/assets/gameback/gameback9.png'); }
+.game-bg-1 { background-image: url('/assets/gameback/gameback1.webp'); background-size: 100% 100%; }
+.game-bg-2 { background-image: url('/assets/gameback/gameback2.webp'); background-size: 100% 100%; }
+.game-bg-3 { background-image: url('/assets/gameback/gameback3.webp'); background-size: 100% 100%; }
+.game-bg-4 { background-image: url('/assets/gameback/gameback4.webp'); background-size: 100% 100%; }
+.game-bg-5 { background-image: url('/assets/gameback/gameback5.webp'); background-size: 100% 100%; }
+.game-bg-6 { background-image: url('/assets/gameback/gameback6.webp'); background-size: 100% 100%; }
+.game-bg-7 { background-image: url('/assets/gameback/gameback7.webp'); background-size: 100% 100%; }
+.game-bg-8 { background-image: url('/assets/gameback/gameback8.webp'); background-size: 100% 100%; }
+.game-bg-9 { background-image: url('/assets/gameback/gameback9.webp'); background-size: 100% 100%; }
 
 /* 7-column game layout */
 .game-layout {

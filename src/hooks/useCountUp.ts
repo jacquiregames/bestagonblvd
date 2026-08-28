@@ -1,44 +1,47 @@
 // src/hooks/useCountUp.ts
 import { useState, useEffect, useRef } from 'react';
 
-const easeOutExpo = (t: number) => {
-    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-};
+export function useCountUp(endValue: number, duration: number = 500) {
+  const [count, setCount] = useState(endValue);
+  const prevEndValueRef = useRef(endValue);
 
-export const useCountUp = (endValue: number, duration: number = 1000) => {
-    const [count, setCount] = useState(endValue);
-    const currentDisplayValueRef = useRef(endValue);
+  useEffect(() => {
+    // If the target hasn't actually changed, do nothing.
+    if (prevEndValueRef.current === endValue) return;
 
-    useEffect(() => {
-        // Guard against zero/negative durations instantly jumping to the end
-        if (duration <= 0) {
-            setCount(endValue);
-            currentDisplayValueRef.current = endValue;
-            return;
-        }
+    let startTimestamp: number | null = null;
+    let rafId: number;
+    
+    // The animation starts from wherever the current count state happens to be
+    const startValue = count; 
+    
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      
+      // Use an easing function for a smoother count (optional, but looks great!)
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const currentCount = Math.floor(easeOutQuart * (endValue - startValue) + startValue);
+      
+      setCount(currentCount);
+      
+      if (progress < 1) {
+        rafId = window.requestAnimationFrame(step);
+      } else {
+        // Ensure it lands exactly on the target value at the end
+        setCount(endValue); 
+        prevEndValueRef.current = endValue;
+      }
+    };
 
-        const startValue = currentDisplayValueRef.current;
-        const frameRate = 1000 / 60; // 60 frames per second
-        
-        // Ensure we always have at least 1 frame to prevent division by zero
-        const totalFrames = Math.max(1, Math.round(duration / frameRate));
-        let currentFrame = 0;
+    rafId = window.requestAnimationFrame(step);
+    
+    return () => window.cancelAnimationFrame(rafId);
+    
+    // We only want this effect to fire when the target 'endValue' or 'duration' changes.
+    // 'count' is intentionally omitted so it doesn't re-trigger itself.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [endValue, duration]);
 
-        const counter = setInterval(() => {
-            currentFrame++;
-            const progress = easeOutExpo(currentFrame / totalFrames);
-            const currentValue = Math.round(startValue + (endValue - startValue) * progress);
-
-            setCount(currentValue);
-            currentDisplayValueRef.current = currentValue;
-
-            if (currentFrame >= totalFrames) {
-                clearInterval(counter);
-            }
-        }, frameRate);
-
-        return () => clearInterval(counter);
-    }, [endValue, duration]);
-
-    return count;
-};
+  return count;
+}

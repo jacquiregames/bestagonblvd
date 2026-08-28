@@ -37,7 +37,7 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
   if (!isOpen) return null;
 
   const formatImagePath = (path: string | undefined) => {
-    if (!path) return '/assets/tiles/basic/suburbs.png';
+    if (!path) return '/assets/tiles/basic/suburbs.webp';
     const cleanPath = path.replace(/^\/+/, '');
     return `/${cleanPath}`;
   };
@@ -47,7 +47,7 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
       <span className={`log-change-value ${change.stat} ${change.value < 0 ? 'loss' : ''}`}>
         {change.value > 0 ? '+' : ''}{change.value}
         <img 
-          src={`/assets/tags/${change.stat}.png`} 
+          src={`/assets/tags/${change.stat}.webp`} 
           className="log-tag-icon" 
           alt={change.stat} 
         />
@@ -88,7 +88,7 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
                 <div className="log-col-visuals"> 
                   <div className="log-col-player">
                     <img 
-                      src={`/assets/colors/${summary.playerColor}.png`} 
+                      src={`/assets/colors/${summary.playerColor}.webp`} 
                       className="log-player-gem" 
                       alt={`${summary.playerColor} gem`} 
                     />
@@ -101,7 +101,7 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
                       className="log-tile-img" 
                       alt="action visual"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = '/assets/tiles/basic/suburbs.png';
+                        (e.target as HTMLImageElement).src = '/assets/tiles/basic/suburbs.webp';
                       }}
                     />
                     {summary.isInvestment && (

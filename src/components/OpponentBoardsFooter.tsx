@@ -21,6 +21,8 @@ interface MiniBoardCardProps {
   board: PlacedTile[];
   isViewing: boolean;
   onSelect: () => void;
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
 }
 
 // Fixed thumbnail viewport size — every mini board is scaled to fit inside
@@ -30,7 +32,7 @@ const VIEWPORT_WIDTH = 120;
 const VIEWPORT_HEIGHT = 90;
 const MAX_FIT_SCALE = 3.5; // cap how much a tiny (e.g. starting) board gets blown up
 
-const MiniBoardCard: React.FC<MiniBoardCardProps> = ({ player, board, isViewing, onSelect }) => {
+const MiniBoardCard: React.FC<MiniBoardCardProps> = ({ player, board, isViewing, onSelect, onHoverStart, onHoverEnd }) => {
   const { tiles } = useGameData();
 
   const { positionedTiles, canvasWidth, canvasHeight, fitScale } = useMemo(() => {
@@ -73,6 +75,8 @@ const MiniBoardCard: React.FC<MiniBoardCardProps> = ({ player, board, isViewing,
       className={`opponent-mini-board-card ${isViewing ? "is-viewing" : ""}`}
       style={{ "--player-color": player.color } as React.CSSProperties}
       onClick={onSelect}
+      onMouseEnter={onHoverStart}
+      onMouseLeave={onHoverEnd}
       title={`View ${player.name}'s board`}
     >
       <div className="opponent-mini-board-header">
@@ -125,6 +129,7 @@ interface OpponentBoardsFooterProps {
   myPlayerName: string;
   viewingPlayerName: string;
   onSelectPlayer: (name: string) => void;
+  onHoverPlayer: (name: string | null) => void;
 }
 
 const OpponentBoardsFooter: React.FC<OpponentBoardsFooterProps> = ({
@@ -134,6 +139,7 @@ const OpponentBoardsFooter: React.FC<OpponentBoardsFooterProps> = ({
   myPlayerName,
   viewingPlayerName,
   onSelectPlayer,
+  onHoverPlayer,
 }) => {
   // Every other player, in turn order — so with 4 players there are 3 mini
   // boards, with 2 players there's 1, and it's stable across turns rather
@@ -153,6 +159,8 @@ const OpponentBoardsFooter: React.FC<OpponentBoardsFooterProps> = ({
           board={playerBoards[name] || []}
           isViewing={viewingPlayerName === name}
           onSelect={() => onSelectPlayer(name)}
+          onHoverStart={() => onHoverPlayer(name)}
+          onHoverEnd={() => onHoverPlayer(null)}
         />
       ))}
     </div>

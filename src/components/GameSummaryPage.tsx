@@ -105,11 +105,11 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
               winners.map(wId => (
                 <div key={wId} className="public-goal-winner-row bounce-in">
                   <div className="winner-info">
-                    <img src={`/assets/colors/${gs.players[wId].color}.png`} className="winner-gem" />
+                    <img src={`/assets/colors/${gs.players[wId].color}.webp`} className="winner-gem" />
                     <span className="winner-name">{wId}</span>
                   </div>
                   <span className="pop-bonus">
-                    <img src="/assets/tags/population.png" /> +{goal.populationBonus}
+                    <img src="/assets/tags/population.webp" /> +{goal.populationBonus}
                   </span>
                 </div>
               ))
@@ -139,14 +139,14 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
             <div className="goal-objective">{goal.description}</div>
             <div className="player-goal-result-row">
               <div className="player-context">
-                <img src={`/assets/colors/${player.color}.png`} className="winner-gem" />
+                <img src={`/assets/colors/${player.color}.webp`} className="winner-gem" />
                 <span>{pId}</span>
               </div>
               <div className={`goal-result ${isSuccess ? 'success' : 'fail'}`}>
                 {isSuccess ? '' : 'FAIL'}
                 {isSuccess && (
                   <span className="pop-bonus">
-                    <img src="/assets/tags/population.png" /> +{goal.populationBonus}
+                    <img src="/assets/tags/population.webp" /> +{goal.populationBonus}
                   </span>
                 )}
               </div>
@@ -174,18 +174,18 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
           <div key={`cash-${pId}`} className="summary-entry cash-entry fade-in">
             <div className="conversion-row">
               <div className="winner-info">
-                <img src={`/assets/colors/${player.color}.png`} className="winner-gem" />
+                <img src={`/assets/colors/${player.color}.webp`} className="winner-gem" />
                 <span className="winner-name">{pId}</span>
               </div>
               <div className="conversion-details">
                 <span className="cash-val">
-                  <img src="/assets/tags/money.png" /> {player.money}
+                  <img src="/assets/tags/money.webp" /> {player.money}
                 </span>
                 <span className="arrow">
-                  <img src="/assets/tags/arrow.png" alt="arrow" />
+                  <img src="/assets/tags/arrow.webp" alt="arrow" />
                 </span>
                 <span className="pop-bonus">
-                  <img src="/assets/tags/population.png" /> +{bonus}
+                  <img src="/assets/tags/population.webp" /> +{bonus}
                 </span>
               </div>
             </div>

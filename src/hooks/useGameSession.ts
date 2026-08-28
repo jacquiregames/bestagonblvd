@@ -26,16 +26,6 @@ export function useGameSession(
     }
   }, [gameState, gameStarted]);
 
-  // FIX: Removed the duplicate boot-up useEffect that called api.getGameState() here.
-  // useGameStateSync already fetches state on mount. Having both run in parallel caused
-  // two simultaneous HTTP calls to /game_state on every page load, with the results
-  // racing each other to set state. The WebSocket will broadcast any active game state
-  // on connection, so session restoration from sessionStorage is handled below via the
-  // game_started WS message in App.tsx's handleWebSocketMessage instead.
-  //
-  // The one thing the old boot-up did that nothing else does is restore playerName/color
-  // from sessionStorage when rejoining a game in progress. We keep that part here as a
-  // lightweight check that doesn't make any extra HTTP calls:
   useEffect(() => {
     const storedName = sessionStorage.getItem("playerName");
     const storedColor = sessionStorage.getItem("playerColor");
@@ -81,12 +71,7 @@ export function useGameSession(
 
   const handleStartGame = useCallback(async () => {
     try {
-      await api.startGame();
-      // FIX: Removed the manual api.getGameState() call that was here.
-      // The backend broadcasts a "game_started" WebSocket event to all connected clients
-      // (including the host) immediately after starting. App.tsx's handleWebSocketMessage
-      // handles that event and calls setGameState, so fetching manually is redundant and
-      // causes a second HTTP round-trip + duplicate state update racing the WS message.
+      await api.startGame(); 
       setGameStarted(true);
     } catch (err) {
       setErrorMessage(getErrorMessage(err));

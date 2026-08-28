@@ -177,9 +177,7 @@
 .winner-container {
     text-align: center;
     padding: 20px; /* Restored original padding for better spacing */
-		background-image: url('/winnerback.png'); /* Assuming the path is in assets */
-    
-    /* FIX: Replace background-size and background-position with these properties */
+    background-image: url('/assets/winnerback.webp'); 
     background-size: cover;          /* Scales the image to fill the container */
     background-position: center;     /* Centers the image within the container */
     background-repeat: no-repeat;    /* Prevents the image from tiling */
@@ -187,7 +185,7 @@
     border: 3px solid gold;
     border-radius: 20px;
     margin-top: 10px; /* Restored original margin */
-    
+
     /* Add this for better text readability over the background image */
     position: relative; 
     z-index: 1;

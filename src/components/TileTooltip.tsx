@@ -85,7 +85,7 @@ const renderWithIcons = (text: string) => {
       if (numtags.has(fileName)) {
         return (
           <span key={i} className="inline-icon-replacement" title={part}>
-            <img src={`/assets/numtags/${fileName}.png`} alt={part} className="text-inline-icon numtag-icon" />
+            <img src={`/assets/numtags/${fileName}.webp`} alt={part} className="text-inline-icon numtag-icon" />
             <span className="sr-only">{part}</span>
           </span>
         );
@@ -96,7 +96,7 @@ const renderWithIcons = (text: string) => {
         <span key={i}>
           {numtagMatch[1]}{numtagMatch[2]}{' '}
           <span className="inline-icon-replacement" title={stat}>
-            <img src={`/assets/tags/${stat}.png`} alt={stat} className="text-inline-icon" />
+            <img src={`/assets/tags/${stat}.webp`} alt={stat} className="text-inline-icon" />
             <span className="sr-only">{stat}</span>
           </span>
         </span>
@@ -107,7 +107,7 @@ const renderWithIcons = (text: string) => {
     if (map[lower]) {
       return (
         <span key={i} className="inline-icon-replacement" title={part}>
-          <img src={`/assets/tags/${map[lower]}.png`} alt={part} className="text-inline-icon" />
+          <img src={`/assets/tags/${map[lower]}.webp`} alt={part} className="text-inline-icon" />
           <span className="sr-only">{part}</span>
         </span>
       );
@@ -144,7 +144,7 @@ const TileTooltip: React.FC<TileTooltipProps> = ({ tile, marketFee, availableCou
           <div className="tooltip-header-right">
             {tile.type && (
               <img 
-                src={`/assets/tags/${tile.type.toLowerCase().replace(/s$/, '')}.png`} 
+                src={`/assets/tags/${tile.type.toLowerCase().replace(/s$/, '')}.webp`} 
                 alt={tile.type} 
                 className="tooltip-type-icon"
                 title={tile.type}

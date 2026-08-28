@@ -1,9 +1,8 @@
 /* src/components/UnifiedIntro.css */
 
 @font-face {
-  font-family: 'BestagonLogoFont';
-  /* Ensure this file is in your /public folder exactly named LogoFont.otf */
-  src: url('/LogoFont2.otf') format('opentype');
+  font-family: 'BestagonLogoFont'; 
+  src: url('/LogoFont.otf') format('opentype');
 }
 
 .intro-screen-root {

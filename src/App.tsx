@@ -51,8 +51,10 @@ const App: React.FC = () => {
 
   // --- User Interface Hooks ---
   const {
-    viewingPlayerName, setViewingPlayerName, isLogOpen, setIsLogOpen,
-    handleOpenGameLog, breakdown, setBreakdown, handleStatClick,
+    viewingPlayerName, setViewingPlayerName,
+    hoveredPlayerName, setHoveredPlayerName,
+    isLogOpen, setIsLogOpen, handleOpenGameLog,
+    breakdown, setBreakdown, handleStatClick,
     goalComparison, handleGoalHover,
     endGameLiveStats, setEndGameLiveStats, zoom, setZoom,
     centerCameraCounter, setCenterCameraCounter, highlightedStat, setHighlightedStat,
@@ -73,6 +75,8 @@ const App: React.FC = () => {
     showGoalSelection, showWaitingForPlayers, canUndo
   } = useDerivedGameState(gameState, playerName);
 
+  const activeViewPlayerName = hoveredPlayerName || viewingPlayerName;
+
   const showTurnBanner = useTurnBanner(isMyTurn);
 
   // True whenever any of the undo-flow overlays below is being shown, so we
@@ -89,7 +93,7 @@ const App: React.FC = () => {
     createLakeMode, setCreateLakeMode, selectedMarketForLake, setSelectedMarketForLake,
     recentlyPlaced, handleHexClick
   } = useGameActions({
-    playerName, viewingPlayerName, isMyTurn, myBoard, validPlacements,
+    playerName, viewingPlayerName: activeViewPlayerName, isMyTurn, myBoard, validPlacements,
     currentTurnPlayerId: gameState?.currentTurnPlayerId || null,
     performAction, setErrorMessage, setActionError, isActionPending
   });
@@ -139,7 +143,7 @@ const App: React.FC = () => {
   if (!gameStarted || !gameState) {
     return (
       <GameDataProvider data={gameData}>
-        <div className="app-container" style={{ backgroundImage: "url('/assets/gameback/gameback1.png')" }}>
+        <div className="app-container" style={{ backgroundImage: "url('/assets/gameback/gameback1.webp')" }}>
           <Fireworks
             options={{ opacity: 0.5, intensity: 15, friction: 0.97, acceleration: 1.05, hue: { min: 100, max: 240 }, delay: { min: 30, max: 60 } }}
             style={{ top: 0, left: 0, width: "100%", height: "100%", position: "fixed", zIndex: 1, pointerEvents: "none" }}
@@ -167,7 +171,7 @@ const App: React.FC = () => {
         {actionError && <div className="error-message action-error">{actionError}</div>}
         {showTurnBanner && (
           <div className="turn-banner-overlay">
-            <img src="/assets/yourturn/yourturn.png" alt="Your Turn!" className="turn-banner-gif" />
+            <img src="/assets/yourturn/yourturn.webp" alt="Your Turn!" className="turn-banner-gif" />
           </div>
         )}
 
@@ -183,7 +187,7 @@ const App: React.FC = () => {
                   setSelectedTile({ id, from, marketIndex: index });
                   setActionMode("place");
                 }}
-                currentPlayer={gameState.currentTurnPlayerId || ""}
+                currentPlayer={gameState.gameOver ? "" : (gameState.currentTurnPlayerId || "")}
                 myPlayerName={playerName}
                 myCash={gameState.players[playerName]?.money ?? 0}
                 showOnlyBasics
@@ -214,7 +218,7 @@ const App: React.FC = () => {
                     setActionMode("place");
                   }
                 }}
-                currentPlayer={gameState.currentTurnPlayerId || ""}
+                currentPlayer={gameState.gameOver ? "" : (gameState.currentTurnPlayerId || "")}
                 myPlayerName={playerName}
                 myCash={gameState.players[playerName]?.money ?? 0}
                 showOnlyMarket
@@ -231,7 +235,7 @@ const App: React.FC = () => {
             <div className="col-board">
               <div className="game-board-header">
                 <div className="header-left">
-                  {(isMyTurn || canUndo) && viewingPlayerName === playerName && (
+                  {(isMyTurn || canUndo) && activeViewPlayerName === playerName && (
                     <div className="header-left-actions-wrapper">
                       <div className="header-action-buttons">
                         {isMyTurn ? (
@@ -288,21 +292,24 @@ const App: React.FC = () => {
                       )}
                     </div>
                   )}
-                  {viewingPlayerName !== playerName && (
+                  {activeViewPlayerName !== playerName && (
                     <div className="viewing-player-display hex-panel">
-                      <span>Viewing: {viewingPlayerName}</span>
+                      <span>Viewing: {activeViewPlayerName}</span>
                       <button onClick={() => setViewingPlayerName(playerName)}>Return</button>
                     </div>
                   )}
                 </div>
 
                 <div className="header-center">
-                  {gameState.currentTurnPlayerId && !createLakeMode && (
+                  {(gameState.currentTurnPlayerId || gameState.gameOver) && !createLakeMode && (
                     <div className={`turn-indicator hex-panel ${isMyTurn ? "your-turn" : ""}`}>
                       {(() => {
-                        const currentPlayer = gameState.players[gameState.currentTurnPlayerId];
+                        if (gameState.gameOver) {
+                          return <span>GAME OVER</span>;
+                        }
+                        const currentPlayer = gameState.players[gameState.currentTurnPlayerId!];
                         if (!currentPlayer) return null;
-                        const gemSrc = `/assets/colors/${currentPlayer.color}.png`;
+                        const gemSrc = `/assets/colors/${currentPlayer.color}.webp`;
                         const isLastTurn = isMyTurn && gameState.finalTurnCountdown === 1;
                         const turnText = isLastTurn ? "LAST TURN" : (isMyTurn ? "YOUR TURN" : currentPlayer.name);
                         return (
@@ -329,14 +336,14 @@ const App: React.FC = () => {
               </div>
 
               <GameBoard
-                placedTiles={gameState.playerBoards[viewingPlayerName] || []}
+                placedTiles={gameState.playerBoards[activeViewPlayerName] || []}
                 oneMoreRoundDrawn={gameState.oneMoreRoundDrawn}
                 recentlyPlaced={recentlyPlaced}
-                validPlacements={viewingPlayerName === playerName && ((actionMode === "place" && selectedTile) || actionMode === "lake") ? validPlacements : []}
+                validPlacements={activeViewPlayerName === playerName && ((actionMode === "place" && selectedTile) || actionMode === "lake") ? validPlacements : []}
                 onHexClick={handleHexClick}
                 zoom={zoom}
                 highlightedStat={highlightedStat}
-                viewingPlayerColor={gameState.players[viewingPlayerName]?.color || ''}
+                viewingPlayerColor={gameState.players[activeViewPlayerName]?.color || ''}
                 centerCameraCounter={centerCameraCounter}
               />
 
@@ -345,15 +352,16 @@ const App: React.FC = () => {
                 playerBoards={gameState.playerBoards}
                 turnOrder={gameState.turnOrder}
                 myPlayerName={playerName}
-                viewingPlayerName={viewingPlayerName}
+                viewingPlayerName={activeViewPlayerName}
                 onSelectPlayer={setViewingPlayerName}
+                onHoverPlayer={setHoveredPlayerName}
               />
             </div>
 
             <div className="col-players">
               <PlayersDisplay
                 players={endGameLiveStats || gameState.players} turnOrder={gameState.turnOrder}
-                playerBoards={gameState.playerBoards} currentPlayerId={gameState.currentTurnPlayerId}
+                playerBoards={gameState.playerBoards} currentPlayerId={gameState.gameOver ? null : gameState.currentTurnPlayerId}
                 onPlayerView={setViewingPlayerName} onStatClick={handleStatClick}
                 highlightedStat={highlightedStat} onStatHighlight={setHighlightedStat} onStatMouseLeave={() => setBreakdown(null)}
               />

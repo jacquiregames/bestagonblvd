@@ -107,9 +107,9 @@
 .mini-hex.lake-hex .hex-inner {
   background-color: #0066ff;
 }
-.mini-hex.lake-hex-a .hex-inner { background-image: url("/assets/tiles/lakes/lake_a.png"); }
-.mini-hex.lake-hex-b .hex-inner { background-image: url("/assets/tiles/lakes/lake_b.png"); }
-.mini-hex.lake-hex-c .hex-inner { background-image: url("/assets/tiles/lakes/lake_c.png"); }
+.mini-hex.lake-hex-a .hex-inner { background-image: url("/assets/tiles/lakes/lake_a.webp"); }
+.mini-hex.lake-hex-b .hex-inner { background-image: url("/assets/tiles/lakes/lake_b.webp"); }
+.mini-hex.lake-hex-c .hex-inner { background-image: url("/assets/tiles/lakes/lake_c.webp"); }
 
 @media (max-width: 900px) {
   .opponent-mini-board-card { display: none; } /* footer is a nice-to-have HUD; yield space on small viewports */

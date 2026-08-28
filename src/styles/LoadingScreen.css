@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   background-color: #002b36;
-  background-image: url('/assets/gameback/gameback4.png');
+  background-image: url('/assets/gameback/gameback4.webp');
   background-size: cover;
   background-position: center;
   z-index: 9999;
@@ -33,10 +33,7 @@
   50% { opacity: 1; transform: scale(1); }
   100% { opacity: 0.4; transform: scale(0.98); }
 }
-
-/* Animates background-size/position rather than transform: scale, so the
-   pan/zoom applies only to the background image and not to the text/loader
-   children of .loading-screen-container. */
+ 
 @keyframes kenburns-single {
   0% {
     background-size: 100% auto;
@@ -57,8 +54,7 @@
   content: "";
   height: 30px;
   aspect-ratio: 1;
-  border-radius: 50%;
-  /* FIX: removed stray 'png' word that was before 'radial-gradient' */
+  border-radius: 50%; 
   background:
     radial-gradient(farthest-side,#000 95%,#0000) 50%/10px 10px no-repeat
     #58a6ff;

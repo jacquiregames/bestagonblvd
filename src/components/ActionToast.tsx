@@ -22,7 +22,7 @@ const ActionToast: React.FC<ActionToastProps> = ({ summary }) => {
   if (!summary || !show) return null;
 
   const formatImagePath = (path: string | undefined) => {
-    if (!path) return '/assets/tiles/basic/suburbs.png';
+    if (!path) return '/assets/tiles/basic/suburbs.webp';
     const cleanPath = path.replace(/^\/+/, '');
     return `/${cleanPath}`;
   };
@@ -32,7 +32,7 @@ const ActionToast: React.FC<ActionToastProps> = ({ summary }) => {
       <span className={`toast-change-value ${change.stat} ${change.value < 0 ? 'loss' : ''}`}>
         {change.value > 0 ? '+' : ''}{change.value}
         <img 
-          src={`/assets/tags/${change.stat}.png`} 
+          src={`/assets/tags/${change.stat}.webp`} 
           className="toast-tag-icon" 
           alt={change.stat} 
         />
@@ -56,7 +56,7 @@ const ActionToast: React.FC<ActionToastProps> = ({ summary }) => {
         <div className={`toast-top-row ${hasStats ? 'has-stats' : ''}`}>
           <div className="toast-player-col">
             <img 
-              src={`/assets/colors/${summary.playerColor}.png`} 
+              src={`/assets/colors/${summary.playerColor}.webp`} 
               alt={summary.playerColor} 
               className="toast-gem" 
             />
@@ -69,7 +69,7 @@ const ActionToast: React.FC<ActionToastProps> = ({ summary }) => {
               className="toast-tile-img" 
               alt="action visual"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = '/assets/tiles/basic/suburbs.png';
+                (e.target as HTMLImageElement).src = '/assets/tiles/basic/suburbs.webp';
               }}
             />
             {summary.isInvestment && (

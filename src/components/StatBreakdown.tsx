@@ -69,7 +69,7 @@ const StatBreakdown: React.FC<StatBreakdownProps> = ({ breakdown }) => {
                 <li key={index}>
                   <div className="breakdown-item-name">
                     <img 
-                      src={`/assets/tags/${item!.category.toLowerCase()}.png`} 
+                      src={`/assets/tags/${item!.category.toLowerCase()}.webp`} 
                       alt={item!.category}
                       className="breakdown-tile-icon"
                     />
@@ -93,7 +93,7 @@ const StatBreakdown: React.FC<StatBreakdownProps> = ({ breakdown }) => {
                 <li key={index}>
                   <div className="breakdown-item-name">
                     <img 
-                      src={`/assets/tags/${item!.category.toLowerCase()}.png`} 
+                      src={`/assets/tags/${item!.category.toLowerCase()}.webp`} 
                       alt={item!.category}
                       className="breakdown-tile-icon"
                     />

@@ -9,10 +9,10 @@ interface VehicleConfig {
 }
 
 const VEHICLE_SEQUENCE: VehicleConfig[] = [
-  { type: 'plane',  image: '/assets/yourturn/your_turn_plane.png',  direction: 'rtl' },
-  { type: 'jet',    image: '/assets/yourturn/your_turn_jet.png',    direction: 'ltr' },
-  { type: 'blimp',  image: '/assets/yourturn/your_turn_blimp.png',  direction: 'rtl' },
-  { type: 'rocket', image: '/assets/yourturn/your_turn_rocket.png', direction: 'ltr' },
+  { type: 'plane',  image: '/assets/yourturn/your_turn_plane.webp',  direction: 'rtl' },
+  { type: 'jet',    image: '/assets/yourturn/your_turn_jet.webp',    direction: 'ltr' },
+  { type: 'blimp',  image: '/assets/yourturn/your_turn_blimp.webp',  direction: 'rtl' },
+  { type: 'rocket', image: '/assets/yourturn/your_turn_rocket.webp', direction: 'ltr' },
 ];
 
 const TurnSkyWriter: React.FC<{ isMyTurn: boolean }> = ({ isMyTurn }) => {

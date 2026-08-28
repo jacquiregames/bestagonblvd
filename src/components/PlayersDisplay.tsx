@@ -13,27 +13,27 @@ interface StatChange {
 }
 
 const dataRows = [
-  { type: 'image', value: '/assets/tags/population.png', alt: 'Population', statKey: 'population' },
-  { type: 'image', value: '/assets/tags/money.png', alt: 'Money', statKey: 'money' },
-  { type: 'image', value: '/assets/tags/income.png', alt: 'Income', statKey: 'income' },
-  { type: 'image', value: '/assets/tags/reputation.png', alt: 'Reputation', statKey: 'reputation' },
-  { type: 'image', value: '/assets/tags/investments.png', alt: 'Investments', statKey: 'investmentMarkers' },
-  { type: 'image', value: '/assets/tags/lake.png', alt: 'Lakes', statKey: 'Lake' },
-  { type: 'image', value: '/assets/tags/residential.png', alt: 'Residential', statKey: 'Residential' },
-  { type: 'image', value: '/assets/tags/civic.png', alt: 'Civic', statKey: 'Civic' },
-  { type: 'image', value: '/assets/tags/school.png', alt: 'School', statKey: 'School' },
-  { type: 'image', value: '/assets/tags/industrial.png', alt: 'Industrial', statKey: 'Industrial' },
-  { type: 'image', value: '/assets/tags/airport.png', alt: 'Airport', statKey: 'Airport' },
-  { type: 'image', value: '/assets/tags/commercial.png', alt: 'Commercial', statKey: 'Commercial' },
-  { type: 'image', value: '/assets/tags/office.png', alt: 'Office', statKey: 'Office' },
-  { type: 'image', value: '/assets/tags/restaurant.png', alt: 'Restaurant', statKey: 'Restaurant' },
-  { type: 'image', value: '/assets/tags/skyscraper.png', alt: 'Skyscraper', statKey: 'Skyscraper' },
-  { type: 'image', value: '/assets/tags/dealership.png', alt: 'Dealership', statKey: 'Dealership' },
+  { type: 'image', value: '/assets/tags/population.webp', alt: 'Population', statKey: 'population' },
+  { type: 'image', value: '/assets/tags/money.webp', alt: 'Money', statKey: 'money' },
+  { type: 'image', value: '/assets/tags/income.webp', alt: 'Income', statKey: 'income' },
+  { type: 'image', value: '/assets/tags/reputation.webp', alt: 'Reputation', statKey: 'reputation' },
+  { type: 'image', value: '/assets/tags/investments.webp', alt: 'Investments', statKey: 'investmentMarkers' },
+  { type: 'image', value: '/assets/tags/lake.webp', alt: 'Lakes', statKey: 'Lake' },
+  { type: 'image', value: '/assets/tags/residential.webp', alt: 'Residential', statKey: 'Residential' },
+  { type: 'image', value: '/assets/tags/civic.webp', alt: 'Civic', statKey: 'Civic' },
+  { type: 'image', value: '/assets/tags/school.webp', alt: 'School', statKey: 'School' },
+  { type: 'image', value: '/assets/tags/industrial.webp', alt: 'Industrial', statKey: 'Industrial' },
+  { type: 'image', value: '/assets/tags/airport.webp', alt: 'Airport', statKey: 'Airport' },
+  { type: 'image', value: '/assets/tags/commercial.webp', alt: 'Commercial', statKey: 'Commercial' },
+  { type: 'image', value: '/assets/tags/office.webp', alt: 'Office', statKey: 'Office' },
+  { type: 'image', value: '/assets/tags/restaurant.webp', alt: 'Restaurant', statKey: 'Restaurant' },
+  { type: 'image', value: '/assets/tags/skyscraper.webp', alt: 'Skyscraper', statKey: 'Skyscraper' },
+  { type: 'image', value: '/assets/tags/dealership.webp', alt: 'Dealership', statKey: 'Dealership' },
 ];
 
 const PLAYER_STAT_KEYS = new Set(['money', 'income', 'reputation', 'population', 'investmentMarkers']);
 
-const getColorImage = (color: string) => `/assets/colors/${color}.png`;
+const getColorImage = (color: string) => `/assets/colors/${color}.webp`;
 
 const countTiles = (board: PlacedTile[], statKey: string, tiles: Record<string, HexTile>): number => {
   if (!board) return 0;
@@ -88,9 +88,7 @@ const PlayersDisplay: React.FC<PlayersDisplayProps> = ({
   const [changedCells, setChangedCells] = useState<Set<string>>(new Set());
   const prevPlayersRef = useRef<Record<string, Player>>(players);
   const prevBoardsRef = useRef<GameState['playerBoards']>(playerBoards);
-
-  // FIX: Merged the two separate useEffects into one pass to avoid double iteration
-  // and the race condition where prevPlayersRef was updated between them.
+ 
   useEffect(() => {
     const prevPlayers = prevPlayersRef.current;
     const prevBoards = prevBoardsRef.current;

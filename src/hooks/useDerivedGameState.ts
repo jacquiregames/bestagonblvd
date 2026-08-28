@@ -4,9 +4,9 @@ import type { GameState, PlacedTile } from '../types';
 import { getNeighbors, type CellCoord } from '../utils';
 
 export function useDerivedGameState(gameState: GameState | null, playerName: string) {
-  const isMyTurn = gameState?.currentTurnPlayerId === playerName;
+  const isMyTurn = gameState?.currentTurnPlayerId === playerName && !gameState?.gameOver;
   const playerAwaitingDiscard = gameState?.playerAwaitingDiscard;
-  const isMyTurnToDiscard = playerAwaitingDiscard === playerName;
+  const isMyTurnToDiscard = playerAwaitingDiscard === playerName && !gameState?.gameOver;
   const myPlayer = gameState?.players?.[playerName];
 
   const myBoard = gameState?.playerBoards?.[playerName] || [];
@@ -34,7 +34,7 @@ export function useDerivedGameState(gameState: GameState | null, playerName: str
     ? myIndex === (currentTurnIndex - 1 + gameState.turnOrder.length) % gameState.turnOrder.length
     : false;
     
-  const canUndo = isPreviousPlayer && !gameState?.hasActedThisTurn && (gameState?.turnNumber ?? 0) > 1 && !isMyTurn;
+  const canUndo = isPreviousPlayer && !gameState?.hasActedThisTurn && (gameState?.turnNumber ?? 0) > 1 && !isMyTurn && !gameState?.gameOver;
 
   return {
     isMyTurn,

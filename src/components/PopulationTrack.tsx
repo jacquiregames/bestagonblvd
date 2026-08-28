@@ -1,7 +1,7 @@
 // src/components/PopulationTrack.tsx
 import React, { useMemo, useState, useRef, useLayoutEffect } from "react";
 import "../styles/PopulationTrack.css";
-import type { Player } from "../types"; // UPDATED: Added type keyword
+import type { Player } from "../types";  
 
 interface Props {
   players: Record<string, Player>;

@@ -6,6 +6,7 @@ import type { BreakdownData } from '../components/StatBreakdown';
 
 export function useGameUI(playerName: string, gameState: GameState | null, setActionError: (msg: string) => void) {
   const [viewingPlayerName, setViewingPlayerName] = useState(playerName);
+  const [hoveredPlayerName, setHoveredPlayerName] = useState<string | null>(null);
   const [isLogOpen, setIsLogOpen] = useState(false);
   const [breakdown, setBreakdown] = useState<BreakdownData | null>(null);
   const [goalComparison, setGoalComparison] = useState<any | null>(null);
@@ -58,8 +59,9 @@ export function useGameUI(playerName: string, gameState: GameState | null, setAc
     }
   }, [setActionError]);
 
-  return {
+return {
     viewingPlayerName, setViewingPlayerName,
+    hoveredPlayerName, setHoveredPlayerName,
     isLogOpen, setIsLogOpen, handleOpenGameLog,
     breakdown, setBreakdown, handleStatClick,
     goalComparison, setGoalComparison, handleGoalHover,
