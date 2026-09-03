@@ -111,7 +111,7 @@ TilesB = {
     effects=[
       TileEffect(trigger=EffectTrigger.ADJACENT, target='Commercial', reputation=-1)
     ], 
-    description='+2 population. -1 income for each adjacent Commercial.',
+    description='+2 population. -1 reputation for each adjacent Commercial.',
     limit=2,
     isUnique=False,
     set='Base'

@@ -2,8 +2,8 @@
 from ..models import Goal, GoalCondition, GoalConditionType, GoalTarget
 
 GOALS = {
-  'ACQUATIC_ENGINEER': Goal(
-    id='ACQUATIC_ENGINEER', key='acquatic_engineer', name='Acquatic Engineer', image='assets/goals/acquatic_engineer.webp',
+  'AQUATIC_ENGINEER': Goal(
+    id='AQUATIC_ENGINEER', key='aquatic_engineer', name='Aquatic Engineer', image='assets/goals/aquatic_engineer.webp',
     description='Most Lakes',
     condition=GoalCondition(type=GoalConditionType.MOST, target=GoalTarget.LAKE),
     populationBonus=20, set='Base'

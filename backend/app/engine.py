@@ -286,8 +286,7 @@ def apply_action(
             discard_cost = MARKET_COST_MODIFIERS[market_index]
             if player.money < discard_cost:
                 raise HTTPException(status_code=403, detail="Not enough money to discard this tile.")
-
-            player.money -= discard_cost
+ 
 
             if discard_cost > 0:
                 if game_state.pending_action_delta.get(player_name) is None:
