@@ -5,7 +5,7 @@
   top: 20vw;
   left: 0;
   width: 100vw;
-  height: 120px;
+  height: 11.1111vh;
   pointer-events: none;
   z-index: var(--z-tooltip);
   overflow: hidden;
@@ -13,19 +13,19 @@
 
 .sky-vehicle {
   position: absolute;
-  height: 80px;
+  height: 7.4074vh;
   width: auto;
 }
 
 /* Direction: Right to Left */
 .rtl {
-  right: -300px; /* Start off-screen right */
+  right: -15.625vw; /* Start off-screen right */
   animation: flyRightToLeft 15s linear forwards;
 }
 
 /* Direction: Left to Right */
 .ltr {
-  left: -300px; /* Start off-screen left */
+  left: -15.625vw; /* Start off-screen left */
   animation: flyLeftToRight 15s linear forwards;
 }
 
@@ -50,14 +50,15 @@
 }
 
 .jet {
-	height: 140px;
+	height: 12.963vh;
 }
 
 .rocket {
-	height: 100px;
+	height: 9.2593vh;
 }
 
 @keyframes bobbing {
   from { margin-top: 0px; }
   to { margin-top: 15px; }
 }
+

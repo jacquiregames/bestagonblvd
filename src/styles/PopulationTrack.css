@@ -2,36 +2,37 @@
 
 .population-track {
   width: 100%;
-  max-height: 890px;
+  max-height: 970vh;
   overflow: auto;
   color: #fff;
-  padding: 4px;
+  padding: 0.5vh;
   border-radius: 2px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 1rem;
 }
 
 .pop-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.45px;
+  gap: 0.2vh;
   position: relative; 
 }
 
 .pop-row {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* Uses 1fr to ensure they fill the row */
-  gap: 2px;
+  gap: 0.2vh;
 }
 
 .pop-cell {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 27px; 
-  /* FIX: Use min-width instead of width so the full-width cell can grow */
-  min-width: 30px; 
+  aspect-ratio: 1 / 1; /* Always a perfect square, regardless of viewport size/shape */
+  font-size: 1rem;  
+  max-height: 3vh;
+  min-width: 1.5vw; /* Floor so cells don't collapse on very narrow layouts */
   line-height: 1;
   color: white;
   box-sizing: border-box;
@@ -43,6 +44,7 @@
 .pop-cell-full-width {
   grid-column: 1 / -1; /* Spans all 5 columns */
   width: 100%;         /* Forces it to fill the entire span */
+  aspect-ratio: 5 / 1; /* Spans 5 cell-widths, so keep it proportioned like 5 squares wide */
 }
 
 /* FANCY STYLES FOR THE 150 ROW */
@@ -51,13 +53,14 @@
   background-size: 200% auto;
   animation: shine 3s linear infinite;
   color: #000; /* Dark text for contrast against gold */
-  font-weight: 900;
+  font-weight: 800;
   font-family: 'Orbitron', sans-serif;
   border: 2px solid #fff;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.5), inset 0 0 10px white;
   text-shadow: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   letter-spacing: 2px;
+  padding: 0.2rem 1rem;
 }
 
 /* Shine animation for the finish line */
@@ -85,7 +88,7 @@
 /* Animated player markers logic remains the same */
 .player-marker {
   position: absolute;
-  width: 18px;
+  width: 18px;  /* Matches MARKER_SIZE in PopulationTrack.tsx, used to center the marker on its cell */
   height: 18px;
   border-radius: 3px;
   border: 2px solid orange;
@@ -107,3 +110,5 @@
 .player-marker.just-moved {
   animation: marker-bounce 0.3s ease-out;
 }
+
+

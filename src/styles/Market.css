@@ -8,12 +8,12 @@
 
 .tile-cost {
   position: absolute;
-  bottom: 2px; 
+  bottom: 0.1852vh; 
   left: 90%;    /* Positioned on the right */
   transform: translateX(-50%);
   background-color: rgba(0,0,0,0.75);
   color: white;
-  padding: 2px 4px;
+  padding: 0.1852vh 0.2083vw;
   font-weight: bold;
   border-radius: 4px;
   font-size: 1.2em;
@@ -23,12 +23,12 @@
 /* NEW: Style for the A, B, C group letter */
 .tile-group {
   position: absolute;
-  bottom: 5px;
+  bottom: 0.463vh;
   left: 5%;    /* Positioned on the left */
   transform: translateX(-50%);
   background-color: rgba(0,0,0,0.75);
   color: #58a6ff; /* Using your highlight color to distinguish it from the price */
-  padding: 2px 4px;
+  padding: 0.1852vh 0.2083vw;
   font-weight: bold;
   border-radius: 4px;
   font-size: 1.2em;
@@ -58,22 +58,22 @@
   flex-wrap: wrap;
   position: relative;
   justify-content: center;
-  gap: 0px;
-  padding: 0px;	
+  gap: 0;
+  padding: 0;	
 	align-items: center;
 }
 .market-section-full .market-tiles {
-  gap: 0px;
-  padding: 0px;
-  width: 155px;
+  gap: 0;
+  padding: 0;
+  width: 8vw;
 	align-content: center !important;
 }
 
 .market-slot {
   position: relative;
   cursor: pointer;
-  width: 144px;
-  height: 125px; 
+  width: 7.5vw;
+  height: 14vh; 
   background: none;  
   border: none;  
   padding: 0;
@@ -138,7 +138,7 @@
   margin-bottom: 15px;
 }
 .market-section h3 {
-  margin: 0 0 8px 0;
+  margin: 0 0 0.7407vh 0;
   text-align: center;
   color: var(--header-color);
   font-size: 1.1em;
@@ -146,11 +146,11 @@
 
 .tile-quantity-badge {
   position: absolute;
-  top: 5px;
-  right: 25px;
+  top: 0.463vh;
+  right: 1.3021vw;
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  padding: 2px 6px;
+  padding: 0.1852vh 0.3125vw;
   border-radius: 10px;
   font-size: 0.9em;
   font-weight: bold;
@@ -188,3 +188,4 @@
 .market-slot.last-round-tile img {
   filter: sepia(50%) brightness(0.9); /* Give it a distinct, faded look */
 }
+

@@ -48,7 +48,7 @@ body {
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  padding: 5px;
+  padding: 0.5vh;
   box-sizing: border-box;
   background-repeat: no-repeat;  
   overflow-y: hidden;
@@ -94,12 +94,13 @@ body {
 }
 
 .turn-banner-gif {
-  width: 70vw; 
+  width: 70vw;  
   opacity: 1; 
   --turn-banner-duration: 2.5s;
   animation-name: shrinkAndMoveUp;
   animation-duration: var(--turn-banner-duration);
   animation-fill-mode: forwards;
+  filter: drop-shadow(2px 2px 16px rgba(250, 255, 255, 0.9)); 
 }
 
 @keyframes shrinkAndMoveUp { 
@@ -117,12 +118,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
+  padding: 1.8519vh 0;
 }
 
 .panel-toggle-button .button {
-  height: 40px;
-  padding: 0 25px !important;
+  height: 3.7037vh;
+  padding: 0 1.3021vw !important;
   display: flex;
   align-items: center;
 }
@@ -134,21 +135,21 @@ body {
 .col-2 {
   background-color: var(--panel-bg);
   border-radius: 8px;
-  padding: 0px;
+  padding: 0;
   overflow-y: hidden;
 	overflow: hidden;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-  height: 885px; 
+  height: 100vh; 
   align-items: center;
 }
 .col-3 {
   background-color: var(--panel-bg);
   border-radius: 8px;
-  padding: 0px 5px;
+  padding: 0px;
   overflow-y: hidden;
 	overflow: hidden;
   box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-  height: 885px; 
+  height: 100vh; 
   display: flex;
   justify-content: center;
 }
@@ -173,22 +174,22 @@ body {
   display: flex;
   flex-direction: column;
 	align-items: center;
-  gap: 0px;
+  gap: 0;
 }
 .goals-list-selection {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 40px;
-  margin: 20px 0;
+  gap: 3vh;
+  margin: 1vh 0;
 }
 
 .goal-item img {
-  width: 120px;
+  width: 6.3vw;
   height: auto;
 }
 .goal-item {
-	width: 120px;
+	width: 6vw;
   cursor: pointer;
   border-radius: 8px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -203,13 +204,13 @@ body {
 .goal-tooltip {
   position: absolute;
   top: 0;
-  left: 150px;
+  left: 7.8125vw;
   background: rgba(0, 0, 0, 0.85);
   color: white;
-  padding: 10px;
+  padding: 0.9259vh;
   border-radius: 8px;
   font-size: 0.8rem;
-  max-width: 220px;
+  max-width: 11.4583vw;
   z-index: 100;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
@@ -231,7 +232,7 @@ body {
   transform: translate(-50%, -50%);
   background: linear-gradient(0deg, hsla(280, 84%, 41%, 1) 0%, hsla(218, 97%, 56%, 1) 100%);
   color: white;
-  padding: 10px;
+  padding: 0.9259vh;
   border-radius: 15px;
   border: 3px solid cyan;
   z-index: var(--z-modal);
@@ -246,7 +247,7 @@ body {
 .goal-selection-overlay {
   top: 45%; 
   left: 50%;
-	max-width: 600px;
+	max-width: 31.25vw;
 }
 
 .waiting-players-overlay {
@@ -264,7 +265,7 @@ body {
 	top: 10%;
 	left: 85%;
 	border-color: #00BFFF;
-	width: 500px;
+	width: 26.0417vw;
 }
 
 .undo-prompt-overlay {
@@ -276,7 +277,7 @@ body {
 
 .undo-prompt-buttons {
   display: flex;
-  gap: 15px;
+  gap: 1.3889vh;
   justify-content: center;
   margin-top: 15px;
 }
@@ -298,25 +299,25 @@ body {
 }
 .lake-mode-label {
   position: absolute;
-  bottom: 4px;
-  left: 4px;
+  bottom: 0.3704vh;
+  left: 0.2083vw;
   background: rgba(59, 130, 246, 0.9);
   color: white;
   font-size: 0.65rem;
-  padding: 1px 4px;
+  padding: 0.0926vh 0.2083vw;
   border-radius: 4px;
 }
 
 .error-message {
 	position: fixed;
-	top: 20px;
+	top: 1.8519vh;
 	left: 50%;
 	transform: translateX(-50%);
 	z-index: var(--z-notification); 
 	color: var(--error-color);
 	font-weight: bold;
 	background-color: #fddddd;
-	padding: 12px 20px;
+	padding: 1.1111vh 1.0417vw;
 	border-radius: 8px;
 	border: 1px solid var(--error-color);
 	box-shadow: 0 4px 12px rgba(0,0,0,0.2); 
@@ -324,18 +325,18 @@ body {
 } 
 @keyframes fadeInAndOut {
 	0% { opacity: 0; top: 0; }
-	15% { opacity: 1; top: 20px; }
-	85% { opacity: 1; top: 20px; }
+	15% { opacity: 1; top: 1.8519vh; }
+	85% { opacity: 1; top: 1.8519vh; }
 	100% { opacity: 0; top: 0; }
 }
 
 .sync-indicator {
   position: fixed;
-  bottom: 10px;
-  right: 10px;
+  bottom: 0.9259vh;
+  right: 0.5208vw;
   background: rgba(59, 130, 246, 0.85);
   color: white;
-  padding: 4px 8px;
+  padding: 0.3704vh 0.4167vw;
   border-radius: 6px;
   font-size: 0.8rem;
   animation: fadeInOut 2s ease-in-out infinite alternate;
@@ -344,4 +345,5 @@ body {
   from { opacity: 0.4; }
   to { opacity: 1; }
 }
+
 

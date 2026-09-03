@@ -96,8 +96,7 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
         const goalEntry = (
           <div key={`pub-g-${goalId}`} className="summary-entry public-goal-entry fade-in">
             <div className="goal-header-row">
-              <span className="goal-title">{goal.name}</span>
-              <span className="goal-objective">{goal.description}</span>
+              <span className="goal-title">{goal.description}</span>  
             </div>
             {winners.length === 0 ? (
               <div className="winner-row no-winner">No Unique Winner</div>
@@ -135,8 +134,7 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
         if (!isMounted) return;
         const entry = (
           <div key={`priv-g-${pId}`} className="summary-entry private-goal-entry fade-in">
-            <div className="goal-title">{goal.name}</div>
-            <div className="goal-objective">{goal.description}</div>
+            <div className="goal-title">{goal.description}</div> 
             <div className="player-goal-result-row">
               <div className="player-context">
                 <img src={`/assets/colors/${player.color}.webp`} className="winner-gem" />
@@ -204,10 +202,8 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
     return () => {
       isMounted = false;
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);  
 
-  // FIX: use liveStats (which has accumulated goal/cash bonuses) for the final ranking,
-  // not gameState.players which reflects the server state before the summary animation.
   const winnersList = useMemo(() => {
     const sorted = Object.values(liveStats).sort((a, b) => b.population - a.population);
     if (sorted.length === 0) return [];
@@ -238,6 +234,15 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
 
           {step.type === 'WINNER_REVEAL' && winnersList.length > 0 && (
             <div className="winner-container scale-up">
+              {winnersList.map((w, index) => (
+                <img 
+                  key={`gem-${w.id}`}
+                  src={`/assets/colors/${w.color}.webp`} 
+                  alt={`${w.color} gem`} 
+                  className="final-winner-gem"
+                  style={index > 0 ? { marginLeft: `${index * 25}px` } : {}}
+                />
+              ))}
               <div className="winner-label">WINNER</div>
               {winnersList.map(w => (
                 <div key={w.id} className="final-winner-name">
@@ -248,8 +253,7 @@ const GameSummaryPage: React.FC<GameSummaryPageProps> = ({ gameState, onLiveStat
             </div>
           )}
         </div>
-      </div>
-      {/* FIX: removed empty inline <style> block that was a leftover stub */}
+      </div> 
     </div>
   );
 };

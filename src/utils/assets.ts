@@ -90,7 +90,7 @@ export const getGameAssets = (tiles: Record<string, HexTile>, goals: Record<stri
     '/assets/tiles/lakes/lake_a.webp',
     '/assets/tiles/lakes/lake_b.webp',
     '/assets/tiles/lakes/lake_c.webp',
-    '/assets/tiles/valid4.webp', 
+    '/assets/tiles/valid.webp', 
 
     '/assets/gameback/gameback1.webp',
     '/assets/gameback/gameback2.webp',

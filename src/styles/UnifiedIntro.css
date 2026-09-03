@@ -90,7 +90,7 @@
   transform: translate(-50%, -50%); /* Keeps it perfectly centered on the coordinates */
   z-index: 10;
   width: 90vw;
-  max-width: 1450px;
+  max-width: 75.5208vw;
   display: flex;
   justify-content: center;
 }
@@ -153,7 +153,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 0.9259vh;
   opacity: 0;
   pointer-events: none; 
   transition: opacity 1s ease-in-out;
@@ -170,13 +170,13 @@
   background: rgba(111, 0, 255, 0.75);
   border: 2px solid cyan;
   border-radius: 20px;
-  padding: 30px;
+  padding: 2.7778vh;
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
   display: flex;
   flex-direction: column;
   align-items: center;
   /* Removed local z-index, handled by .panel-container */
-  width: 350px; 
+  width: 18.2292vw; 
 }
 
 .intro-title {
@@ -198,34 +198,34 @@
 }
 
 .intro-input {
-  padding: 10px;
+  padding: 0.9259vh;
   font-size: 1.2rem;
   border-radius: 8px;
   border: none;
   margin-bottom: 20px;
-  width: 240px;
+  width: 12.5vw;
   text-align: center;
   z-index: 2;
 }
 
 .color-options {
   display: flex;
-  gap: 20px;
+  gap: 2vh;
   margin-bottom: 20px;
   flex-wrap: wrap;
   justify-content: center;
-  width: 400px; /* MODIFIED: Set width to force wrapping */
+  width: 20vw;  
   text-align: center;
 }
 .color-row {
   display: flex;
-  gap: 15px;
+  gap: 1.5vh;
   text-align: center !important;
   justify-content: center;
 }
 .color-gem {
-  width: 64px;
-  height: 64px;
+  width: 3vw;
+  height: 6vh;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
   text-align: center !important;
@@ -271,8 +271,8 @@
   display: flex;
   align-items: center;
   justify-content: left;
-  gap: 12px;
-  padding: 2px; 
+  gap: 1.1111vh;
+  padding: 0.1852vh; 
   border-radius: 8px;
   margin-bottom: 0px;
 }
@@ -282,8 +282,8 @@
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
-  width: 22px;
-  height: 22px;
+  width: 1.1458vw;
+  height: 2.037vh;
   line-height: 1;
   font-size: 0.8rem;
   cursor: pointer;
@@ -294,8 +294,8 @@
   transform: scale(1.1);
 }
 .lobby-player-color-icon {
-  width: 40px;
-  height: 40px;
+  width: 2.0833vw;
+  height: 3.7037vh;
   object-fit: contain;
 }
 .lobby-player-name {
@@ -321,3 +321,4 @@
     transform: scale(1.1);
   }
 }
+

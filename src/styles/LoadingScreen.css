@@ -47,12 +47,12 @@
 
 .loader {
   display: inline-flex;
-  gap: 15px;
+  gap: 1.3889vh;
 }
 .loader:before,
 .loader:after {
   content: "";
-  height: 30px;
+  height: 2.7778vh;
   aspect-ratio: 1;
   border-radius: 50%; 
   background:
@@ -67,4 +67,5 @@
   0% ,20% {transform:scaleX(var(--s,1)) rotate(0deg) ;clip-path:inset(0)}
   60%,100%{transform:scaleX(var(--s,1)) rotate(30deg);clip-path:inset(40% 0 0)}
 }
+
 

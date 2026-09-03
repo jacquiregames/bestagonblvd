@@ -27,8 +27,8 @@ const ActionToast: React.FC<ActionToastProps> = ({ summary }) => {
     return `/${cleanPath}`;
   };
 
-  const renderStatChange = (change: StatChangeDetail, index: number) => (
-    <div key={`toast-stat-${index}`} className="toast-stat-row">
+  const renderStatChange = (change: StatChangeDetail, index: number, showReason: boolean = true) => (
+    <div key={`toast-stat-${index}`} className={`toast-stat-row ${!showReason ? 'no-reason' : ''}`}>
       <span className={`toast-change-value ${change.stat} ${change.value < 0 ? 'loss' : ''}`}>
         {change.value > 0 ? '+' : ''}{change.value}
         <img 
@@ -38,7 +38,7 @@ const ActionToast: React.FC<ActionToastProps> = ({ summary }) => {
         />
       </span>
       <span className="toast-source-name">{change.source}</span>
-      <span className="toast-reason-text">{change.reason}</span>
+      {showReason && <span className="toast-reason-text">{change.reason}</span>}
     </div>
   );
 
@@ -100,16 +100,21 @@ const ActionToast: React.FC<ActionToastProps> = ({ summary }) => {
                 {summary.conditionalEffects.map((change, i) => renderStatChange(change, i + 100))}
               </div>
             )}
-            {summary.upkeepEffects?.length > 0 && (
-              <div className="toast-section">
-                <h4 className="toast-section-header">Upkeep</h4>
-                {summary.upkeepEffects.map((change, i) => renderStatChange(change, i + 200))}
-              </div>
-            )}
-            {summary.redLineEffects?.length > 0 && (
-              <div className="toast-section">
-                <h4 className="toast-section-header">Red Lines Crossed</h4>
-                {summary.redLineEffects.map((change, i) => renderStatChange(change, i + 300))}
+            
+            {(summary.upkeepEffects?.length > 0 || summary.redLineEffects?.length > 0) && (
+              <div className="toast-side-by-side">
+                {summary.upkeepEffects?.length > 0 && (
+                  <div className="toast-section upkeep-section">
+                    <h4 className="toast-section-header">Upkeep</h4>
+                    {summary.upkeepEffects.map((change, i) => renderStatChange(change, i + 200, false))}
+                  </div>
+                )}
+                {summary.redLineEffects?.length > 0 && (
+                  <div className="toast-section redline-section">
+                    <h4 className="toast-section-header">Red Lines Crossed</h4>
+                    {summary.redLineEffects.map((change, i) => renderStatChange(change, i + 300, false))}
+                  </div>
+                )}
               </div>
             )}
           </div>

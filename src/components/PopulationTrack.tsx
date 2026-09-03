@@ -96,29 +96,40 @@ const PopulationTrack: React.FC<Props> = ({ players }) => {
     );
   }, [players]);
 
-  // FIX: useLayoutEffect runs after the DOM is painted, so we can measure elements
   useLayoutEffect(() => {
     if (!gridRef.current) return;
 
-    const newCoords = new Map<number, { top: number; left: number; width: number; height: number; }>();
-    const gridRect = gridRef.current.getBoundingClientRect();
-    const cells = gridRef.current.querySelectorAll('[data-pop]');
+    const gridNode = gridRef.current;
 
-    cells.forEach(cell => {
-      const popValue = parseInt(cell.getAttribute('data-pop')!, 10);
-      const cellRect = cell.getBoundingClientRect();
-      // Calculate position relative to the grid container
-      newCoords.set(popValue, {
-        top: cellRect.top - gridRect.top,
-        left: cellRect.left - gridRect.left,
-        width: cellRect.width,
-        height: cellRect.height,
+    const measureCells = () => {
+      const newCoords = new Map<number, { top: number; left: number; width: number; height: number; }>();
+      const gridRect = gridNode.getBoundingClientRect();
+      const cells = gridNode.querySelectorAll('[data-pop]');
+
+      cells.forEach(cell => {
+        const popValue = parseInt(cell.getAttribute('data-pop')!, 10);
+        const cellRect = cell.getBoundingClientRect();
+        // Calculate position relative to the grid container
+        newCoords.set(popValue, {
+          top: cellRect.top - gridRect.top,
+          left: cellRect.left - gridRect.left,
+          width: cellRect.width,
+          height: cellRect.height,
+        });
       });
-    });
+      setCellCoords(newCoords);
+    };
 
-    setCellCoords(newCoords);
-  }, [players]); // Re-calculate if the number of players changes (in case layout shifts)
+    measureCells();
+    const resizeObserver = new ResizeObserver(() => {
+      measureCells();
+    });    
+    resizeObserver.observe(gridNode);
 
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []); // Empty dependency array: sets up once on mount and manages its own resizes
   return (
     <div className="pop-grid" ref={gridRef}>
       {/* --- Part 1: Render the static background grid --- */}
@@ -173,9 +184,6 @@ const PopulationTrack: React.FC<Props> = ({ players }) => {
           top: `${coords.top + (coords.height / 2) - (MARKER_SIZE / 2)}px`,
           left: `${coords.left + (coords.width / 2) - (MARKER_SIZE / 2)}px`,
           transform: `translateX(var(--offset-x, 0px))`,
-          // FIX: expose the offset as a CSS variable rather than baking it
-          // directly into `transform`, since marker-bounce also animates
-          // `transform` and would otherwise clobber this horizontal offset.
           ['--offset-x' as any]: `${offsetX}px`,
         };
 

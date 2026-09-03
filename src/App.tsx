@@ -194,6 +194,7 @@ const App: React.FC = () => {
                 createLakeMode={createLakeMode}
                 basicTileQuantities={gameState.basicTileQuantities}
                 isActionPending={isActionPending}
+                isGameOver={gameState.gameOver}
               />
               <GoalsDisplay goalIds={gameState.publicGoals} onGoalHover={handleGoalHover} />
             </div>
@@ -229,6 +230,7 @@ const App: React.FC = () => {
                 }}
                 isDiscardMode={isMyTurnToDiscard}
                 isActionPending={isActionPending}
+                isGameOver={gameState.gameOver}
               />
             </div>
 

@@ -1,5 +1,5 @@
 // src/components/Market.tsx
-import React, { useState } from "react"; 
+import React, { useState, useEffect } from "react"; 
 import { useGameData } from "../context/GameDataContext";
 import type { HexTile } from "../types"; 
 import TileTooltip from "./TileTooltip"; 
@@ -26,6 +26,7 @@ interface MarketProps {
   isDiscardMode?: boolean;
   basicTileQuantities?: Record<string, number>; 
   isActionPending?: boolean;
+  isGameOver?: boolean;
 }
 
 const Market: React.FC<MarketProps> = ({
@@ -42,6 +43,7 @@ const Market: React.FC<MarketProps> = ({
   isDiscardMode = false, 
   basicTileQuantities = {},
   isActionPending = false,
+  isGameOver = false,
 }) => {
   const { tiles } = useGameData();
   const getTileById = (id: string) => tiles[id];
@@ -52,6 +54,12 @@ const Market: React.FC<MarketProps> = ({
     availableCount?: number; 
     y: number;
   } | null>(null);
+
+  useEffect(() => {
+    if (isGameOver) {
+      setHoveredTile(null);
+    }
+  }, [isGameOver]);
   
   const isMyTurn = currentPlayer === myPlayerName;
 
@@ -86,14 +94,14 @@ const Market: React.FC<MarketProps> = ({
     const isDiscardSelectable = isDiscardMode && isMarket;
     const isNewest = isMarket && index === 6; 
         
-    const handleClick = () => {     
+    const handleClick = () => {
       if (isLastRoundTile || isSoldOut || isActionPending) return;
       if (!isMyTurn && !isDiscardMode) return;
       onTileSelect(tile.id, from, index);
     };
      
     const handleMouseEnter = (e: React.MouseEvent) => {
-      if (isLastRoundTile) return;
+      if (isLastRoundTile || isGameOver) return;
       let fee: number | undefined = undefined;
       if (from === 'market' && typeof index === 'number') {
         fee = MARKET_COST_MODIFIERS[index] ?? 0;

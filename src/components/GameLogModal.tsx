@@ -14,11 +14,7 @@ interface GameLogModalProps {
 const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries, gameState }) => {
   const { tiles } = useGameData();
   const getTileById = (id: string) => tiles[id];
-
-  // FIX: useMemo must run unconditionally on every render (Rules of Hooks).
-  // It was previously called after an early `if (!isOpen) return null;`,
-  // which meant this hook was skipped whenever the modal was closed and
-  // could desync from other hooks' call order.
+ 
   const tileCounts = useMemo(() => {
     const counts = { a: 0, b: 0, c: 0 };
     if (gameState?.tileStackAbc) {
@@ -42,8 +38,8 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
     return `/${cleanPath}`;
   };
 
-  const renderStatChange = (change: StatChangeDetail, summaryId: string, index: number) => (
-    <div key={`${summaryId}-stat-${index}`} className="log-stat-row">
+  const renderStatChange = (change: StatChangeDetail, summaryId: string, index: number, showReason: boolean = true) => (
+    <div key={`${summaryId}-stat-${index}`} className={`log-stat-row ${!showReason ? 'no-reason' : ''}`}>
       <span className={`log-change-value ${change.stat} ${change.value < 0 ? 'loss' : ''}`}>
         {change.value > 0 ? '+' : ''}{change.value}
         <img 
@@ -53,7 +49,7 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
         />
       </span>
       <span className="log-source-name">{change.source}</span>
-      <span className="log-reason-text">{change.reason}</span>
+      {showReason && <span className="log-reason-text">{change.reason}</span>}
     </div>
   );
 
@@ -121,7 +117,7 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
                     </div>
                   </div>
 
-                  <div className="log-stats-container">
+                  <div className="log-stats-container">  
                     {summary.immediateEffects?.length > 0 && (
                       <div className="log-section">
                         <h4 className="log-section-header">Immediate Effects</h4>
@@ -134,21 +130,25 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
                         {summary.conditionalEffects.map((change, i) => renderStatChange(change, summary.summaryId, i + 100))}
                       </div>
                     )}
-                    {summary.upkeepEffects?.length > 0 && (
-                      <div className="log-section">
-                        <h4 className="log-section-header">Upkeep</h4>
-                        {summary.upkeepEffects.map((change, i) => renderStatChange(change, summary.summaryId, i + 200))}
-                      </div>
-                    )}
-                    {summary.redLineEffects?.length > 0 && (
-                      <div className="log-section">
-                        <h4 className="log-section-header">Red Lines Crossed</h4>
-                        {summary.redLineEffects.map((change, i) => renderStatChange(change, summary.summaryId, i + 300))}
+                    
+                    {(summary.upkeepEffects?.length > 0 || summary.redLineEffects?.length > 0) && (
+                       <div className="log-side-by-side">
+                        {summary.upkeepEffects?.length > 0 && (
+                          <div className="log-section upkeep-section">
+                            <h4 className="log-section-header">Upkeep</h4>
+                            {summary.upkeepEffects.map((change, i) => renderStatChange(change, summary.summaryId, i + 200, false))}
+                          </div>
+                        )}
+                        {summary.redLineEffects?.length > 0 && (
+                          <div className="log-section redline-section">
+                            <h4 className="log-section-header">Red Lines Crossed</h4>
+                            {summary.redLineEffects.map((change, i) => renderStatChange(change, summary.summaryId, i + 300, false))}
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
                 </div>
-
               </div>
             </div>
           ))}
@@ -164,4 +164,4 @@ const GameLogModal: React.FC<GameLogModalProps> = ({ isOpen, onClose, summaries,
   );
 };
 
-export default GameLogModal; 
+export default GameLogModal;

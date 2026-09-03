@@ -2,9 +2,9 @@
 .summary-overlay {
     position: fixed;
     top: 1vh; /* Position from the top of the viewport */
-    left: 180px; /* Position from the left edge */
-    width: 300px; /* Match the width of the summary container */
-    height: 95.5vh; /* Match the height of the summary container */
+    left: 9vw; /* Position from the left edge */
+    width: 15vw; /* Match the width of the summary container */
+    height: 96vh; /* Match the height of the summary container */
     z-index: var(--z-summary-overlay);
 }
 
@@ -13,40 +13,40 @@
     height: 100%; /* Let the container fill its parent overlay */
     background: #002b36; 
     border-radius: 10px;
-    padding: 12px;
+    border: 3px solid lime;
+    padding: 1vh;
     overflow-y: auto;
 	scrollbar-width: thin;  
     box-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
-}
- 
+} 
 
 .summary-section-header {
     font-family: 'Orbitron', sans-serif;
     color: #39FF14;
     text-align: center;
     border-bottom: 2px solid #39FF14;
-    padding-bottom: 3px;
-    margin-top: 4px;
-    font-size: 1.8rem;
+    padding-bottom: 2px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+    font-size: 1.8rem; 
 }
 
 .summary-entry {
-    margin: 16px 1px;
-    padding: 10px;
+    margin: 1vh 0vw;
+    padding: 0.5vh;
     background: rgba(255, 205, 205, 0.3);
     border-radius: 10px; 
     border: 2px solid #39FF14;
 }
 
 .goal-title { 
-
 	display: flex;
 	font-size: 1.3rem;
-	font-weight: bold;
+	font-weight: 900;
 	color: white; 
 	text-align: center; 
 	justify-content: center;
-	margin-bottom: 2px;
+	margin-bottom: 0px;
 }
 
 .goal-objective {
@@ -54,7 +54,7 @@
 	font-size: 1.1rem;
 	font-style: italic;
 	color: white; 
-	margin-bottom: 2px;
+	margin-bottom: 0px;
 	text-align: center; 
 	justify-content: center;
 }
@@ -64,21 +64,22 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1.1rem;
-    margin-top: 8px;
+    margin-top: 0px;
 }
 
 .conversion-row {
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    gap: 5px;
-    font-size: 1.2rem;
-    margin-top: 8px;
+    gap: 0.5vh;
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-top: 0px;
 }
 
 .winner-row.no-winner {
     justify-content: center;
-    color: red;
+    color: cyan;
     font-weight: bold;
 	display: flex;  
     align-items: center; 		
@@ -88,52 +89,56 @@
 .winner-info {	 
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5vh;
 }
 
 /* NEW: This rule styles the new right-aligned group */
 .conversion-details {
   display: flex;
   align-items: center;
-  gap: 4px; /* Adjust spacing between money, arrow, and pop bonus */
+  gap: 0.4vh; /* Adjust spacing between money, arrow, and pop bonus */
 }
 
 .winner-gem {
-    width: 30px;
-    height: 30px; 
+    width: 1.25vw;
+    height: 2.5vh; 
 }
 
 .winner-name {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.3rem;
+    font-weight: 900;
     color: white;
 }
 
 .player-context {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	font-weight: bold;
 	color: white;
 	align-content: center; 
 }
 
 .pop-bonus { 
-    color: #FF8C00;
-    font-weight: bold;		
-		font-size: 1.3rem;
+    color: lime;
+    font-weight: 900;		
+	font-size: 1.4rem;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.5vh;
 }
 
 .pop-bonus img {
-    width: 24px;
-    height: 24px;
+    width: 1.25vw;
+    height: 2.5vh;
+    filter: drop-shadow(.5px .5px 0 white) 
+      drop-shadow(-.5px -.5px 0 white)
+      drop-shadow(.5px -.5px 0 white)
+      drop-shadow(-.5px .5px 0 white);
 }
 .cash-val img {
-    height: 24px;
+    height: 2.5vh;
 }
 .arrow img {
-    height: 24px;
+    height: 2.5vh;
 }
 .arrow {
   display: flex;
@@ -142,17 +147,16 @@
 .cash-val {
 	color: springgreen;
 	font-size: 1.3rem; 
-    font-weight: bold;
+    font-weight: 900;
 	align-content: center;
 	justify-content: center;
     display: flex;
 }
 
-.goal-result {
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
+.goal-result { 
+    font-weight: 900;
     margin-top: 0px;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     display: flex;
     align-items: center;
 }
@@ -161,32 +165,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3px; /* Add some space above */
+  margin-top: 0px; /* Add some space above */
 }
 
 .player-context {
   display: flex;
   align-items: center;
-  gap: 8px; /* Creates space between the gem and the text */
-  font-weight: bold;
+  gap: 0.8vh; /* Creates space between the gem and the text */
+  font-weight: 900;
 }
 
 .goal-result.success { color: #39FF14; }
-.goal-result.fail { color: #FF4136; }
+.goal-result.fail { color: cyan; }
 
 .winner-container {
     text-align: center;
-    padding: 20px; /* Restored original padding for better spacing */
+    padding: 1.5vh; /* Restored original padding for better spacing */
     background-image: url('/assets/winnerback.webp'); 
-    background-size: cover;          /* Scales the image to fill the container */
-    background-position: center;     /* Centers the image within the container */
-    background-repeat: no-repeat;    /* Prevents the image from tiling */
-
+    background-size: 100% 100%;          
+    background-position: center;     
+    background-repeat: no-repeat;    
     border: 3px solid gold;
     border-radius: 20px;
     margin-top: 10px; /* Restored original margin */
-
-    /* Add this for better text readability over the background image */
     position: relative; 
     z-index: 1;
 }
@@ -206,7 +207,7 @@
 .winner-label { 
     color: #39FF14;
     font-size: 2rem;
-		font-weight: bold;
+	font-weight: 900;
     font-family: 'Orbitron', sans-serif;
 }
 
@@ -214,9 +215,20 @@
     font-size: 3rem;
     font-weight: 900;
     color: gold;
-		 
     margin-bottom: 10px;
     font-family: 'Orbitron', sans-serif;
+}
+
+/* NEW: Adjust location and size of the winner's gem here */
+.final-winner-gem {
+    position: absolute;
+    top: -3px;
+    left: 8.5px;
+    width: 2.5vw;
+    height: 4.5vh;
+    object-fit: contain;
+    z-index: 2;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.6));
 }
 
 .final-pop {
@@ -224,7 +236,7 @@
     font-weight: 900;
     color: rgba(255,255,255,1);
     margin-bottom: 0px;
-		padding: 0px;
+	padding: 0;
 }
 
 /* Animations */
@@ -237,3 +249,4 @@
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes bounceIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 @keyframes scaleUp { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+

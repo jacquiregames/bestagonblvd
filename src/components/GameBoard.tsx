@@ -47,9 +47,7 @@ const shouldHighlight = (
   if (!tileData) return false;
   return tileData.category === highlightedStat || tileData.type === highlightedStat;
 };
-
-// FIX: each fish entry now carries a unique instanceId so that hiding one fish
-// by src won't accidentally remove a different fish with the same src from another cycle.
+ 
 interface FishConfig {
   q: number;
   r: number;
@@ -63,6 +61,7 @@ interface ActiveFish {
   q: number;
   r: number;
   src: string;
+  visibleTime: number; 
 }
 
 const fishPositions: FishConfig[] = [
@@ -190,7 +189,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
       fishPositions.forEach(({ q, r, src, delay, visibleTime }) => {
         const timer = setTimeout(() => {
           const instanceId = ++fishInstanceCounter;
-          setVisibleFish((prev) => [...prev, { instanceId, q, r, src }]);
+          setVisibleFish((prev) => [...prev, { instanceId, q, r, src, visibleTime }]);
 
           const hideTimer = setTimeout(() => {
             setVisibleFish((prev) => prev.filter((f) => f.instanceId !== instanceId));
@@ -279,6 +278,7 @@ const GameBoard: React.FC<GameBoardProps> = ({
                         src={f.src}
                         alt="fish"
                         className="fish-gif"
+                        style={{ animation: `fishFade ${f.visibleTime}ms ease-in-out forwards` }}
                       />
                     ))
                   }

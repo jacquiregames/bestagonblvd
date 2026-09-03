@@ -4,16 +4,16 @@
   position: fixed;
   /* FIX: removed duplicate z-index declaration */
   z-index: var(--z-tooltip);
-  top: 20px;
-  right: 480px;
+  top: 1.8519vh;
+  right: 25vw;
   pointer-events: none;
 }
 
 .stat-breakdown-content {
   background: white;
-  padding: 20px 30px;
+  padding: 1.8519vh 1.5625vw;
   border-radius: 8px;
-  max-width: 300px;
+  max-width: 15.625vw;
   width: 90%;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   position: relative;
@@ -22,8 +22,8 @@
 }
 
 .stat-breakdown-header {
-  padding: 8px 12px;
-  margin: -20px -30px 20px -30px;
+  padding: 0.7407vh 0.625vw;
+  margin: -1.8519vh -1.5625vw 1.8519vh -1.5625vw;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   color: white;
@@ -52,19 +52,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 8px;
+  padding: 0.3704vh 0.4167vw;
   border-radius: 4px;
 }
 
 .breakdown-item-name {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.7407vh;
 }
 
 .breakdown-tile-icon {
-  width: 20px;
-  height: 20px;
+  width: 1.0417vw;
+  height: 1.8519vh;
 }
 
 .breakdown-section li:nth-child(odd) {
@@ -82,3 +82,4 @@
   border-top: 1px solid #eee;
   padding-top: 10px;
 }
+

@@ -7,8 +7,8 @@
 }
 
 .tile-tooltip-content {
-  width: 330px; /* Slightly wider for the new layout */
-  background-color: #002b36; /* Match the game's dark theme better */
+  width: 20vw;
+  background-color: #002b36;
   border: 2px solid cyan;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3), inset 0 0 15px rgba(0,0,0,0.8);
@@ -26,10 +26,12 @@
   animation: tooltipFadeIn 0.2s ease-out;
 }
 
+/* --- HEADER SECTION --- */
+
 .tooltip-header {
-  padding: 10px 15px;
+  padding: 1vh 0.5vw;
   font-weight: 900;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
   display: flex;
@@ -39,36 +41,45 @@
   font-family: 'Orbitron', sans-serif;
 }
 
+.tooltip-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.7407vh;
+}
+
 .tooltip-header-count {
   background: rgba(0, 0, 0, 0.6);
-  padding: 2px 8px;
+  padding: 0.2vh 0.5vw;
   border-radius: 12px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   border: 1px solid white;
 }
 
-.tooltip-body {
-  padding: 15px;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-
-.tooltip-stats img {
-  width: 28px;
-  height: 28px;
+.tooltip-type-icon {
+  width: auto;
+  height: 4vh; 
+  object-fit: contain;
   filter: drop-shadow(.5px .5px 0 white) 
           drop-shadow(-.5px -.5px 0 white)
           drop-shadow(.5px -.5px 0 white)
           drop-shadow(-.5px .5px 0 white);
 }
 
+/* --- BODY SECTION --- */
+
+.tooltip-body {
+  padding: 1vh;
+  background: rgba(0, 0, 0, 0.4);
+}
+
 .tooltip-cost-horizontal {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 1.5vh;
   margin-bottom: 5px;
   padding-bottom: 1px; 
+  color: white;
 }
 
 .cost-block {
@@ -79,10 +90,10 @@
 }
 
 .cost-label {
-  font-size: 0.75rem;
-  color: #aaa;
+  font-size: 1rem;
+  color: cyan;
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1.6;
   margin-bottom: 0px;
   text-align: center;
   font-family: 'Orbitron', sans-serif;
@@ -90,99 +101,127 @@
 }
 
 .cost-value {
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: white;
   line-height: 1;
 }
 
 .cost-operator {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  color: #666;
-  margin-top: 14px; /* Pushes the operator down to align with the numbers */
+  color: #fff;
+  margin-top: 14px;
 }
 
 .total-cost-val {
   color: #39FF14;
   text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
-  font-size: 1.6rem;
+  font-size: 2rem;
 }
+
+/* --- DESCRIPTIONS --- */
 
 .tooltip-description-split {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 1.2vh;
 }
 
 .desc-section {
   background: rgba(255, 255, 255, 0.05); 
-  padding: 8px 12px;
+  padding: 0.7vh 0.5vw;
   border-radius: 0 6px 6px 0;
 }
 
 .desc-label {
   font-weight: bold;
   color: cyan;
-  font-size: 0.85rem;
+  font-size: 1.3rem;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 6px;
   font-family: 'Orbitron', sans-serif;
+  border-bottom: 2px solid cyan;
 }
 
 .desc-content {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  line-height: 1.5;
   color: #fff;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em; /* Adds space between multiple sentences */
 }
 
-.inline-icon-replacement {
+.effect-sentence {
   display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center; 
+  row-gap: 0.4em; 
+  white-space: pre-wrap; 
+}
+
+/* --- INLINE ICONS --- */
+
+.inline-icon-replacement {
+  display: inline-flex; /* Match the parent's flex behavior */
   align-items: center;
-  vertical-align: bottom;
-  margin: 0 2px;
+  line-height: 2; 
+  padding: 1px;
 }
 
 .text-inline-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-  filter: drop-shadow(.5px .5px 0 white) 
-          drop-shadow(-.5px -.5px 0 white)
-          drop-shadow(.5px -.5px 0 white)
-          drop-shadow(-.5px .5px 0 white);
+  width: 2.5em;
+  height: auto; 
+  object-fit: contain; 
 }
+
+
 .text-inline-icon.numtag-icon {
-  width: auto;
+  width: 1.9em; 
+  height: auto; 
+} 
+
+/* Target basic tags specifically in the Conditional Effects row */
+.conditional-effects-section .text-inline-icon:not(.numtag-icon) {
+  width: auto; 
+  height: 1.9em; 
 }
 
-/* New header right-align block */
-.tooltip-header-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* Combined numtags in the Conditional Effects row */
+.conditional-effects-section .text-inline-icon.numtag-icon {
+  width: 1.9em; 
+  height: auto; 
 }
 
-.tooltip-type-icon {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  filter: drop-shadow(.5px .5px 0 white) 
-          drop-shadow(-.5px -.5px 0 white)
-          drop-shadow(.5px -.5px 0 white)
-          drop-shadow(-.5px .5px 0 white);
+/* ========================================================
+   SPECIAL OVERRIDES: Waterfront Realty
+======================================================== */
+
+/* You can target the entire wrapper here */
+.waterfront-realty-special {
+  /* gap: 1.5vh; */
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+/* Customize the Immediate block */
+.waterfront-realty-special .immediate-effects-section {
+  /* background: rgba(0, 255, 0, 0.05); */
+}
+
+/* Customize the Conditional block */
+.waterfront-realty-special .conditional-effects-section {
+  /* background: rgba(255, 215, 0, 0.05); */
+}
+
+/* Customize the Text / Layout inside Waterfront Realty */
+.waterfront-realty-special .desc-content {
+  /* Example: Add slightly more line-height to breathe or shrink the text */
+  /* font-size: 1.05rem; */
+  /* line-height: 1.6; */
+}
+
+/* Adjust the Icons specifically for Waterfront Realty */
+.waterfront-realty-special .text-inline-icon {
+  /* height: 1.3em; */
 }

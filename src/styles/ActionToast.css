@@ -1,7 +1,7 @@
 /* src/styles/ActionToast.css */
 .action-toast-wrapper {
   position: fixed;
-  bottom: 25px;
+  bottom: 2.5vh;
   right: 0;
   transform: translateX(-18%);
   z-index: var(--z-notification);
@@ -14,11 +14,11 @@
   background: rgba(10, 10, 10, 0.95);
   border: 2px solid #268bd2;
   border-radius: 15px;
-  padding: 15px 25px;
+  padding: 1.5vh 1.5vw;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  min-width: 400px;
+  min-width: 22vw;
   max-width: 90vw;
   box-shadow: 0 0 30px rgba(38, 139, 210, 0.7);
   animation: toast-lifecycle 5s forwards;
@@ -36,7 +36,7 @@
 .toast-top-row {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 2vh;
 }
 
 .toast-top-row.has-stats {
@@ -49,12 +49,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 60px;
+  min-width: 3.125vw;
 }
 
 .toast-gem {
-  width: 45px;
-  height: 45px;
+  width: 2.5vw;
+  height: 5vh;
   object-fit: contain;
 }
 
@@ -68,8 +68,8 @@
 
 .toast-tile-wrapper {
   position: relative;
-  width: 75px;
-  height: 65px;
+  width: 6vw;
+  height: 12vh;
 }
 
 .toast-tile-img {
@@ -132,7 +132,7 @@
   font-size: 0.9rem; 
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin: 0 0 6px 0;
+  margin: 0 0 0.5556vh 0;
   text-align: center;
 }
 
@@ -140,9 +140,43 @@
   display: grid;
   grid-template-columns: 60px 140px 1fr;
   align-items: center;
-  gap: 10px;
+  gap: 0.9259vh;
   font-size: 0.95rem;
-  padding: 3px 0;
+  padding: 0.2778vh 0;
+}
+
+.toast-stat-row.no-reason {
+  grid-template-columns: 60px 1fr;
+}
+
+.toast-side-by-side {
+  display: flex;
+  gap: 1.5vw;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(38, 139, 210, 0.3);
+}
+
+.toast-side-by-side:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.toast-side-by-side .toast-section {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.toast-side-by-side .upkeep-section {
+  flex: 35;
+}
+
+.toast-side-by-side .redline-section {
+  flex: 65;
 }
 
 .toast-change-value {
@@ -150,12 +184,12 @@
   display: flex;
   align-items: center;
   font-size: 1.2rem;
-  gap: 5px;
+  gap: 0.463vh;
 }
 
 .toast-tag-icon { 
-  width: 18px; 
-  height: 18px; 
+  width: 0.9375vw; 
+  height: 1.6667vh; 
 }
 
 .toast-source-name { 
@@ -175,3 +209,4 @@
 .population { color: #FF8C00; }
 .money { color: #39FF14; }
 .loss { color: red; } 
+

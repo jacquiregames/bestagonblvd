@@ -33,7 +33,7 @@
 
 .button {
   position: relative;
-  padding: 8px 10px;
+  padding: 0.7407vh 0.5208vw;
   min-width: auto;
   clip-path: polygon(
     var(--corner-distance) 0,
@@ -58,7 +58,7 @@
 }
 .button.small {
   min-width: auto;
-  padding: 12px 10px; /* FIX: was '10x', corrected to '10px' */
+  padding: 1.1111vh 0.5208vw; /* FIX: was '10x', corrected to '10px' */
 }
 .button:hover:not(:disabled) {
   transform: translateY(-4px);
@@ -125,3 +125,4 @@
 .button-wrapper.highlight .button-inner {
   background-image: linear-gradient(to bottom, #15507b, #206fa7);
 }
+

@@ -36,7 +36,7 @@ const formatDescription = (desc: string) => {
 // Track the specific numtags we have assets for
 const numtags = new Set([
   'minus1income', 'minus2income', 
-  'minus1reputation', 'minus2reputation', 
+  'minus1reputation', 'minus2reputation', 'minus3reputation',  
   'plus1reputation', 'plus2reputation', 'plus3reputation', 
   'plus1income', 'plus2income', 'plus3income', 'plus5income',
   'plus1population', 'plus2population', 'plus3population', 'plus5population',
@@ -44,7 +44,7 @@ const numtags = new Set([
 ]);
 
 const renderWithIcons = (text: string) => {
-  const regex = /([-+]\s*\d+\s+(?:income|reputation|population)|\b(?:Residential|Commercial|Industrial|Civic|Airport|Dealerships?|Lakes?|Office|Restaurants?|Schools?|Skyscrapers?|Income|Population|Reputation)\b)/gi;
+  const regex = /([-+]\s*\d+\s+(?:income|reputation|population)|\b(?:Residential|Commercial|Industrial|Civic|Airport|Dealerships?|Lakes?|Office|Restaurants?|Schools?|Skyscrapers?|Income|Investment|Investments|Population|Reputation)\b)/gi;
   const parts = text.split(regex);
   
   const map: Record<string, string> = {
@@ -65,6 +65,8 @@ const renderWithIcons = (text: string) => {
     'skyscraper': 'skyscraper',
     'skyscrapers': 'skyscraper',
     'income': 'income',
+    'investment': 'investment',
+    'investments': 'investments',
     'population': 'population',
     'reputation': 'reputation'
   };
@@ -86,7 +88,6 @@ const renderWithIcons = (text: string) => {
         return (
           <span key={i} className="inline-icon-replacement" title={part}>
             <img src={`/assets/numtags/${fileName}.webp`} alt={part} className="text-inline-icon numtag-icon" />
-            <span className="sr-only">{part}</span>
           </span>
         );
       }
@@ -96,8 +97,7 @@ const renderWithIcons = (text: string) => {
         <span key={i}>
           {numtagMatch[1]}{numtagMatch[2]}{' '}
           <span className="inline-icon-replacement" title={stat}>
-            <img src={`/assets/tags/${stat}.webp`} alt={stat} className="text-inline-icon" />
-            <span className="sr-only">{stat}</span>
+            <img src={`/assets/tags/${stat}.webp`} alt={stat} className="text-inline-icon" /> 
           </span>
         </span>
       );
@@ -107,8 +107,7 @@ const renderWithIcons = (text: string) => {
     if (map[lower]) {
       return (
         <span key={i} className="inline-icon-replacement" title={part}>
-          <img src={`/assets/tags/${map[lower]}.webp`} alt={part} className="text-inline-icon" />
-          <span className="sr-only">{part}</span>
+          <img src={`/assets/tags/${map[lower]}.webp`} alt={part} className="text-inline-icon" /> 
         </span>
       );
     }
@@ -123,7 +122,22 @@ const TileTooltip: React.FC<TileTooltipProps> = ({ tile, marketFee, availableCou
   const isMarketTile = typeof marketFee === 'number';
   const totalCost = tile.cost + (marketFee || 0);
 
-  const { immediate, conditional } = formatDescription(tile.description);
+  // --- SPECIAL CASE: Waterfront Realty ---
+  const isWaterfront = tile.id === 'WATERFRONT_REALTY';
+  let immediate: string[] = [];
+  let conditional: string[] = [];
+
+  if (isWaterfront) {
+    immediate = ["Take $2 for each tile already adjacent to any of your Lakes"];
+    conditional = [
+      "Tiles placed adjacent to your Lakes are now worth a $4 cash bonus instead of $2",
+      "With investment: $6"
+    ];
+  } else {
+    const formatted = formatDescription(tile.description);
+    immediate = formatted.immediate;
+    conditional = formatted.conditional;
+  }
 
   const safeY = Math.max(200, Math.min(y, window.innerHeight - 250));
 
@@ -180,17 +194,29 @@ const TileTooltip: React.FC<TileTooltipProps> = ({ tile, marketFee, availableCou
             </div>
           </div>
 
-          <div className="tooltip-description-split">
+          <div className={`tooltip-description-split ${isWaterfront ? 'waterfront-realty-special' : ''}`}>
             {immediate.length > 0 && (
-              <div className="desc-section">
+              <div className="desc-section immediate-effects-section">
                 <div className="desc-label">Immediate Effect:</div>
-                <div className="desc-content">{renderWithIcons(immediate.join('. '))}</div>
+                <div className="desc-content">
+                  {immediate.map((sentence, idx) => (
+                    <div key={`imm-${idx}`} className="effect-sentence">
+                      {renderWithIcons(sentence + (sentence.endsWith('.') ? '' : '.'))}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
             {conditional.length > 0 && (
-              <div className="desc-section">
+              <div className="desc-section conditional-effects-section">
                 <div className="desc-label">Conditional Effects:</div>
-                <div className="desc-content">{renderWithIcons(conditional.join('. '))}</div>
+                <div className="desc-content">
+                  {conditional.map((sentence, idx) => (
+                    <div key={`cond-${idx}`} className="effect-sentence">
+                      {renderWithIcons(sentence + (sentence.endsWith('.') ? '' : '.'))}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
           </div>
