@@ -1,7 +1,7 @@
 name: Build Windows Executable
 
 on:
-  workflow_dispatch: # Allows you to manually trigger the build from GitHub
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -14,12 +14,10 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '26.4.0'
+          node-version: '24'
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
+        uses: pnpm/action-setup@v4
 
       - name: Build Frontend (React/Vite)
         run: |
@@ -38,7 +36,6 @@ jobs:
           pip install pyinstaller
 
       - name: Build Executable with PyInstaller
-        # The --add-data flag embeds the React 'dist' folder directly into the .exe
         run: |
           pyinstaller --name "BestagonBlvd" --onefile --add-data "dist;dist" backend/app/main.py
 
