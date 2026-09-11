@@ -1,6 +1,8 @@
 # backend/app/main.py
 from fastapi import FastAPI, Query, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from typing import Any, Dict, Optional 
 from .data.tiles import TILES_A, TILES_B, TILES_C, TILES_BASIC
 from .data.goals import GOALS
@@ -22,6 +24,10 @@ import random
 import asyncio
 import logging
 import socket  
+import os
+import sys
+import webbrowser
+
 
 app = FastAPI()
 
@@ -572,9 +578,41 @@ def get_ip():
         s.close()
     return IP
 
+# --- SERVE FRONTEND ---
+# Determine absolute path to the "dist" folder (handles both source code and PyInstaller .exe)
+if getattr(sys, 'frozen', False):
+    # Running in a PyInstaller bundle
+    base_dir = sys._MEIPASS
+else:
+    # Running in normal Python environment
+    base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+dist_dir = os.path.join(base_dir, "dist")
+
+# Only mount if the dist folder exists (prevents crashes during backend-only dev)
+if os.path.exists(dist_dir):
+    # Mount the assets folder
+    app.mount("/assets", StaticFiles(directory=os.path.join(dist_dir, "assets")), name="assets")
+    
+    # Catch-all for the main HTML file and root level files (like favicon)
+    @app.get("/{file_path:path}")
+    async def serve_static(file_path: str):
+        full_path = os.path.join(dist_dir, file_path)
+        if os.path.isfile(full_path):
+            return FileResponse(full_path)
+        return FileResponse(os.path.join(dist_dir, "index.html"))
+
+# --- END SERVE FRONTEND ---
+
 if __name__ == "__main__":
     import uvicorn
     logging.basicConfig(level=logging.INFO) 
     local_ip = get_ip()
     port = 3000
+    
+    # Auto-open the host's web browser to the game!
+    print(f"Starting Bestagon Blvd on http://{local_ip}:{port}")
+    webbrowser.open(f"http://localhost:{port}")
+    
     uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
+ 

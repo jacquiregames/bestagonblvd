@@ -52,7 +52,7 @@ GOALS = {
   ),
   'EMPLOYER': Goal(
     id='EMPLOYER', key='employer', name='Employer', image='assets/goals/employer.webp',
-    description='Fewest Played Investment Markers',
+    description='Fewest Investment Markers',
     condition=GoalCondition(type=GoalConditionType.MOST, target=GoalTarget.INVESTMENT_MARKERS),
     populationBonus=15, set='Base'
   ),
