@@ -9,17 +9,14 @@ jobs:
 
     steps:
       - name: Checkout Code
-        # Bumped to v5 (Supports Node 24)
         uses: actions/checkout@v5
 
       - name: Setup Node.js
-        # Bumped to v6 (Supports Node 24)
         uses: actions/setup-node@v6
         with:
           node-version: '24'
 
       - name: Setup pnpm
-        # Bumped to v6 (Supports Node 24)
         uses: pnpm/action-setup@v6
 
       - name: Build Frontend (React/Vite)
@@ -28,7 +25,6 @@ jobs:
           pnpm run build
 
       - name: Setup Python
-        # Bumped to v6 (Supports Node 24)
         uses: actions/setup-python@v6
         with:
           python-version: '3.11'
@@ -44,8 +40,7 @@ jobs:
           pyinstaller --name "BestagonBlvd" --onefile --add-data "dist;dist" backend/app/main.py
 
       - name: Upload Windows Executable
-        # Bumped to v5 (Supports Node 24)
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: BestagonBlvd-Windows
           path: dist/BestagonBlvd.exe
