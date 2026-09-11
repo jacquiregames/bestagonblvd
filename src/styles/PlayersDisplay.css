@@ -86,7 +86,6 @@
   font-size: 1.4rem;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 } 
-}
 
 .players-display-table tbody tr:first-child .players-display-value-cell {
   color: #FF8C00;
